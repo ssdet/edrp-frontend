@@ -1,5 +1,5 @@
 # EDRP Frontend
-EDRP Frontend is a project that aims to develop more efficient, better looking & intutive UI/UX for [HNBGU Online](https://online.hnbgu.ac.in) which is not up to the mark to say the least.
+EDRP Frontend is a project that aims to develop more efficient, better looking & intuitive UI/UX for [HNBGU Online](https://online.hnbgu.ac.in) which is not up to the mark to say the least.
 ## Why We Need A New UI?
 ### [HNBGU Online](https://online.hnbgu.ac.in) Lacks Mobile Support
 Website currently does not support mobile displays at all. All the webpages are not designed with mobile view in mind. This makes it very difficult to be used on mobile. Given more than 1/3rd of the traffic is mobile, it causes usability problems to a large part of the student population.
