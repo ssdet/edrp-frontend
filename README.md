@@ -12,11 +12,11 @@ There is just too much on the screen at one time. Most of the information is not
 ### Website Looks Old
 This is subjective but the website does look kind of old. very basic styling is done with bare minimum use of javascript. This particularly does not affect any functionality but better color pallates that match the university branding are not used.
 ## What do we propose?
-## Using Newer Avaialable Technologies 
+### Using Newer Avaialable Technologies 
 There are a lot of new technologies that will make the website faster and also better looking. It will help in dividing the code better, provide features like state management and make it super easy building it.
-## Following Design Systems
+### Following Design Systems
 By following a design system like material design or carbon by IBM, we reduce the effort to develop a better looking UI. All the magical numbers are already cranked up. We just use & build on top of it.
-## Solving UX Problems
+### Solving UX Problems
 We need to solve the UX problems because it is indeed a complex system. There are many user types and their is a limit of how much you can fit into one screen. For example to reduce clutter we can design multiple pages that take care of specific user needs rather than flooding everything on the front page.
 
 # Long Term Objectives Of The Project
