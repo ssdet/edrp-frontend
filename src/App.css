@@ -1,0 +1,26 @@
+.button {
+	margin-top: 10px;
+	border-radius: 1em;
+	max-width: 150px;
+	height: 30px;
+	background: #008336;
+	color : white;
+	text-align: center;
+	padding-top :3px;
+	
+}
+
+body::-webkit-scrollbar {
+  width: .7em;
+  border-radius: 1em;
+}
+ 
+body::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+  
+}
+ 
+body::-webkit-scrollbar-thumb {
+  background-color: #008336;
+  border-radius: 1em;
+}

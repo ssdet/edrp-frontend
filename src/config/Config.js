@@ -1,0 +1,1 @@
+export const GLOBAL_URL = "https://corsanywhere.herokuapp.com/https://freereddittesting.000webhostapp.com/api/";

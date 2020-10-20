@@ -1,0 +1,29 @@
+.Nav {
+	position: relative;
+	height: 35px;
+	background: #008336;
+	display: flex;
+	flex-direction: row;
+}
+.navLink {
+	padding-left: 0em;
+	padding-right: 0em;
+	cursor: pointer;
+
+}
+.navLink:hover {
+	background: #039640;
+
+}
+.navLinkText {
+	
+	color: white;
+	font-size: 1em;
+	padding: 5px 20px;
+
+}
+.dividerNav {
+	background : white;
+	 width :  1px;
+	 transform: scaleX(0.5);
+}

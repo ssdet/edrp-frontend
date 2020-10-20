@@ -1,0 +1,53 @@
+.quickLinksDiv {
+	width: 99%;
+	padding : .4em;
+	height: 400px;
+	 overflow: scroll;
+	 overflow-x: hidden;
+	
+}
+.quickLinksDiv::-webkit-scrollbar {
+  width: .7em;
+}
+ 
+.quickLinksDiv::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 2px rgba(0, 0, 0, 0.3);
+}
+ 
+.quickLinksDiv::-webkit-scrollbar-thumb {
+  background-color: lightgray;
+  border-radius: 1em;
+}
+.quickLinkHeading {
+	margin-left: .4em;
+}
+.QuickLinkList {
+	max-width: 400px;
+	margin-top : 1em;
+	margin-bottom: 1em;
+}
+
+.DownloadBtn {
+	
+}
+@media only screen and (max-width: 600px) { 
+	.DownloadBtn {
+	position: relative;
+	
+	width: 100%;
+	height: 35px;
+}
+.QuickLinkList {
+	max-width: 350px;
+	margin-top : 1em;
+	margin-bottom: 1em;
+}
+.quickLinksDiv {
+	height: 350px;
+}
+.DownloadBtnMain {
+	position: absolute;
+	right: 0;
+	margin-right: .5em;
+}
+}

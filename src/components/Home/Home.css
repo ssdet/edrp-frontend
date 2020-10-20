@@ -1,0 +1,32 @@
+
+.Home {
+	display: flex;
+	flex-direction: column;
+	
+}
+.row2 {
+	display: flex;
+	flex-direction: row;
+	justify-content: space-around;
+
+}
+.AdmissionsMain {
+
+}
+
+@media only screen and (max-width: 600px) { 
+.Home {
+	display: block;
+
+	
+	
+}
+.row2 {
+	display: flex;
+	flex-direction: column;
+	justify-content: flex-start;
+
+	
+
+}
+}

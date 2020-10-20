@@ -1,0 +1,83 @@
+.PortalCard{
+	position: relative;
+	width: 420px;
+	padding-bottom: .5em;
+	
+}
+.PortalCardDiv{
+  width: 99%;
+  margin-top : 1em;
+	margin-bottom: 1em;
+	padding-bottom: .5em;
+	
+
+}
+
+.PortalCardHeading{
+	padding-top : .4em;
+	padding-left : .4em;
+	padding-bottom : .4em;
+}
+.BtnGroup{
+	margin: 1em;
+}
+.BtnLogo {
+	margin-left: .5em;
+	width: 20px;
+}
+.bottomBtnGroup{
+	padding-bottom: .5em;
+}
+
+.mobBottomMargin {
+     display: none;
+}
+
+.StudentDrawer{
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	
+}
+.StudentDrawerGroupOuter {
+	display: flex;
+	width: 100%;
+	justify-content: center;
+}
+.DrawerBtnGroup {
+	padding: 1em;
+	display: flex;
+	flex-direction: row;
+}
+.DrawerBtn{
+	padding: 1em;
+}
+@media only screen and (max-width: 600px) { 
+.mobBottomMargin {
+     display: block;
+     background: red;
+     margin-top: .5em;
+}
+.StudentDrawer{
+	padding: 1em;
+	display: flex;
+	flex-direction: column;
+	
+}
+.StudentDrawerGroupOuter {
+	display: block;
+	width: 100%;
+	justify-content: center;
+}
+.DrawerBtnGroup {
+	padding: 1em;
+	display: flex;
+	flex-direction: row;
+}
+.PortalCard{
+	position: relative;
+	max-width:100%;
+	padding-bottom: .5em;
+	
+}
+}

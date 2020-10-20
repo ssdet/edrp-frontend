@@ -1,0 +1,97 @@
+.Admissions{
+	position: relative;
+	width: 100%;
+	
+}
+.AdmissionsDiv{
+  width: 99%;
+  margin-top : 1em;
+  padding-top: 1em;
+  padding-left: .1em;
+  padding-right: .1em;
+  padding-bottom: .1em;
+	margin-bottom: 1em;
+	display: flex;
+	flex-direction: column;
+	
+	
+	
+
+}
+.AdmissionsDivInner {
+	
+	display: flex;
+	flex-direction: row;
+}
+
+.AdmissionsTitle {
+	width: 100%;
+	text-align: center;
+}
+
+.PreAdmissionsSection {
+	display: flex;
+	flex-direction: column;
+	padding: .9em;
+}
+.PreAdmissionsInner{
+	display: flex;
+	flex-direction: row;
+}
+.PreAdmissionsTitle {
+	margin-bottom: .5em;
+	text-align: center;
+}
+.AdmissionsSectionUG{
+	margin-right: 1em;
+	
+}
+.PreAddmissionsBody {
+	padding-top: .5em;
+	padding-bottom: .5em;
+}
+.PreAddmissionsBtn {
+	margin-top: .7em;
+}
+.AdmissionsInfo {
+	margin-top: 1em;
+	margin-bottom: 1em;
+}
+.AdmissionsSection {
+	padding: .9em;
+}
+.CurrentAdmissionsTitle {
+	width: 100%;
+	text-align: center;
+}
+
+@media only screen and (max-width: 600px) {  
+	.AdmissionsDivInner {
+	display: flex;
+	flex-direction: column;
+}
+.PreAdmissionsSection {
+	display: flex;
+	flex-direction: column;
+	padding: .9em;
+}
+.PreAdmissionsInner{
+	display: flex;
+	flex-direction: column;
+}
+
+.AdmissionsDiv{
+
+	display: flex;
+	flex-direction: column;
+	
+	
+	
+
+}
+.DesktopDivider{
+	display: none;
+}
+
+
+}
