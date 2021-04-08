@@ -19,6 +19,15 @@ class MyProvider extends React.Component {
   this.state = {
     notices : [],
     quickLinks : [],
+    criterion : 1,
+    step : 1,
+    stepLabel : [
+      "1.1 Curriculam Design & Devlopment",
+      "Programmes/ Courses Focussed On Employability/Enterpreneurship/Skill Development During The Acedemic Year"
+    ],
+    c1s1Rows : [],
+    c1s2Rows : [],
+    c1s3Rows : []
   }
 }
 
@@ -57,6 +66,60 @@ componentDidMount() {
          console.log(response);
        
        }) 
+      },
+      nextStep : ()=> {
+        this.setState({step : this.state.step + 1})
+      },
+      prevStep : ()=> {
+        this.setState({step : this.state.step - 1})
+      },
+      c1s2Add : (cName, cDate, pName, pDate)=> {
+        let c1s2row = this.state.c1s2Rows;
+        c1s2row.push({
+          cName, cDate, pName, pDate
+        })
+        this.setState({
+          c1s2Rows : c1s2row
+        })
+      },
+      c1s2Remove : ()=> {
+        let c1s2row = this.state.c1s2Rows;
+        c1s2row.pop()
+        this.setState({
+          c1s2Rows : c1s2row
+        })
+      },
+      c1s1Add : (pName, pCode, pDate)=> {
+        let c1s1row = this.state.c1s1Rows;
+        c1s1row.push({
+         pName, pCode, pDate
+        })
+        this.setState({
+          c1s1Rows : c1s1row
+        })
+      },
+      c1s1Remove : ()=> {
+        let c1s1row = this.state.c1s1Rows;
+        c1s1row.pop()
+        this.setState({
+          c1s1Rows : c1s1row
+        })
+      },
+      c1s3Add : (pName, pDate)=> {
+        let temp = this.state.c1s3Rows;
+        temp.push({
+         pName, pDate
+        })
+        this.setState({
+          c1s3Rows : temp
+        })
+      },
+      c1s3Remove : ()=> {
+        let temp = this.state.c1s3Rows;
+        temp.pop()
+        this.setState({
+          c1s3Rows : temp
+        })
       }
       }}
       	

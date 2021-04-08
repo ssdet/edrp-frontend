@@ -15,7 +15,7 @@ export default function Header() {
        <div className='iconDiv'>  <YouTubeIcon/> </div>
         <div className='iconDiv'> <FacebookIcon/> </div>
       </div>
-     <div className='centerText'> HNBGU</div>
+     <div className='centerText'> IQAC</div>
       <div className='headerRight'>
        <div className='iconDiv'>  <Brightness4Icon/> </div>
        <div className='iconDiv translationText'>  अ </div>
