@@ -145,7 +145,7 @@ export default function StepTwo() {
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Programme With Code</TableCell>
+                    <TableCell>Programme with Code</TableCell>
                     <TableCell align="right">Introduction Date - Programme</TableCell>
                     <TableCell align="right">Course With Code</TableCell>
                     <TableCell align="right">Date Of Introduction Course</TableCell>
