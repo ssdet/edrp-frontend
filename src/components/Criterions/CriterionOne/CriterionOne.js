@@ -19,6 +19,7 @@ import StepFour from './Steps/StepFour';
 import StepFive from './Steps/StepFive';
 import StepSix from './Steps/StepSix';
 import StepSeven from './Steps/StepSeven';
+import FinalState from './Steps/FinalState';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -70,6 +71,7 @@ export default function CriterionOne() {
        {state.step === 5 && <StepFive/>}
        {state.step === 6 && <StepSix/>}
        {state.step === 7 && <StepSeven/>}
+       {state.step > 7 && <FinalState/>}
        <Grid container spacing={2}> 
         <Grid item xs={6} sm={6}>
          <Button
@@ -92,6 +94,7 @@ export default function CriterionOne() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={state.step > 7}
           >
             {`Next : Step ${state.step}`}
           </Button>

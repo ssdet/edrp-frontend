@@ -5,6 +5,12 @@ import Paper from '@material-ui/core/Paper';
 import { makeStyles } from '@material-ui/core/styles';
 import Divider from '@material-ui/core/Divider';
 import Typography from '@material-ui/core/Typography';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -56,7 +62,7 @@ Director / HOD Login
  </div>
  <Divider/>
  <div className='PreAddmissionsBtn'> 
- <GreenButton>Login as Director </GreenButton>
+ <Link to="/login/director" style={{textDecoration: "none"}}><GreenButton >Login as Director</GreenButton></Link>
  </div>
  </div>
 </div>
@@ -79,7 +85,8 @@ Director / HOD Login
  </div>
  <Divider/>
  <div className='PreAddmissionsBtn'> 
- <GreenButton >Login as HOD</GreenButton>
+ <Link to="/login/hod" style={{textDecoration: "none"}}><GreenButton >Login as HOD</GreenButton></Link>
+ 
  </div>
  </div>
 </div>
@@ -108,7 +115,7 @@ Faculty Login
  </div>
  <Divider/>
  <div className='PreAddmissionsBtn'> 
- <GreenButton>Login As Faculty </GreenButton>
+ <Link to="/login/faculty" style={{textDecoration: "none"}}><GreenButton >Login As Faculty </GreenButton></Link>
  </div>
  </div>
 </div>

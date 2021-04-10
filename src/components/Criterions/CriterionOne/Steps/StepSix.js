@@ -119,19 +119,17 @@ export default function StepSix() {
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Value Added Courses</TableCell>
-                    <TableCell align="right">Introduction Date</TableCell>
-                    <TableCell>Students Enrolled</TableCell>
+                    <TableCell>Project Title</TableCell>
+                    <TableCell align="right">Student Name</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
                   {state.data.c1s6 && state.data.c1s6.map((row) => (
-                    <TableRow key={row.vName}>
+                    <TableRow key={row.pTitle}>
                       <TableCell component="th" scope="row">
-                        {row.vName}
+                        {row.pTitle}
                       </TableCell>
-                      <TableCell align="right">{row.vDate}</TableCell>
-                      <TableCell align="right">{row.sTotal}</TableCell>
+                      <TableCell align="right">{row.sName}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

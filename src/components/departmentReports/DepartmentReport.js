@@ -79,12 +79,17 @@ export default function DepartmentReport() {
         e.preventDefault();
         const formData = new FormData(e.target);
         addBtn(
-            1,
-            5,
+            99,
+            99,
             {
-                vName : formData.get("vName"),
-                vDate : formData.get("vDate"),
-                sTotal : formData.get("sTotal")
+                aName : formData.get("aName"),
+                pTitle : formData.get("pTitle"),
+                pNo : formData.get("pNo"),
+                jTitle :formData.get("jTitle"),
+                year :formData.get("year"),
+                impactFactor : formData.get("impactFactor"),
+                issn : formData.get("issn"),
+
             }
         )
     }
@@ -100,76 +105,97 @@ export default function DepartmentReport() {
              Evalutive Report Of The Department
             </Typography>
              <form className={classes.form} onSubmit={handleSubmit}>
-              <Grid container spacing={2}>
-                <Grid item xs={12} sm={6}>
+               <Grid container spacing={2}>
+                 <Grid item xs={12}>
                   <TextField
                     autoComplete="fname"
                     name="aName"
                     variant="outlined"
                     required
                     fullWidth
-                    id="pName"
+                    id="aName"
                     label="Name Of Author"
                     autoFocus
-                    value={author}
-                    onChange={handleChange}
                   />
-                </Grid>
-                <Grid item xs={12} sm={6}>
-                    <Grid container spacing={2}>
-                        <Grid item xs={12} sm={6}> 
-                              <Button
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                onClick={addAuthor}
-                                className={classes.addAuthor}
-                             >Add</Button>
-                        </Grid>
-                        <Grid item xs={12} sm={6}>
-                              <Button
-                                fullWidth
-                                variant="contained"
-                                color="primary"
-                                onClick={removeAuthor}
-                                className={classes.addAuthor}
-                             >Remove</Button>
-                              </Grid>
-                        </Grid>
-               
-                </Grid>
-                <Grid item xs={12}>
-                {authorArray.map((row) => (
-                    <Typography key={row}>{row}</Typography>
-                      ))}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    autoComplete="fname"
+                    name="pTitle"
                     variant="outlined"
-                    defaultValue="2021-05-24"
                     required
                     fullWidth
-                    type="date"
-                    name="vDate"
-                    label="Introduction Date"
-                    id="password"
-                    autoComplete="current-password"
+                    id="pName"
+                    label="Title Of Paper"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="fname"
+                    name="pNo"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="pNo"
+                    label="Volume (Issue) Page No."
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="fname"
+                    name="jTitle"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="pName"
+                    label="Title Of Journal"
+                    autoFocus
+                  />
+                </Grid>
+            
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="fname"
+                    name="year"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="pName"
+                    label="Year"
+                    autoFocus
+                    type="number"
                   />
                 </Grid>
                 <Grid item xs={12} >
                   <TextField
                     autoComplete="fname"
-                    name="sTotal"
+                    name="impactFactor"
                     variant="outlined"
                     required
                     fullWidth
-                    id="sTotal"
-                    label="Total Students"
+                    id="asd"
+                    label="Impact Factor"
+                    multiline
+                    rows={3}
                     autoFocus
-                    type="number"
                   />
                 </Grid>
-              </Grid>
+                <Grid item xs={12} >
+                  <TextField
+                    autoComplete="fname"
+                    name="issn"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="fgdgf"
+                    label="ISSN"
+                    autoFocus
+                  />
+                </Grid>
+               </Grid>
+            
               <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                      <Button
@@ -195,34 +221,46 @@ export default function DepartmentReport() {
                       </Button>
                   </Grid>
               </Grid>
-              <TableContainer >
-              <Table className={classes.table} aria-label="simple table">
-                <TableHead>
-                  <TableRow>
-                    <TableCell>Value Added Courses</TableCell>
-                    <TableCell align="right">Introduction Date</TableCell>
-                    <TableCell>Students Enrolled</TableCell>
-                  </TableRow>
-                </TableHead>
-                <TableBody>
-                  {state.data.c1s5 && state.data.c1s5.map((row) => (
-                    <TableRow key={row.vName}>
-                      <TableCell component="th" scope="row">
-                        {row.vName}
-                      </TableCell>
-                      <TableCell align="right">{row.vDate}</TableCell>
-                      <TableCell align="right">{row.sTotal}</TableCell>
-                    </TableRow>
-                  ))}
-                </TableBody>
-              </Table>
-            </TableContainer>
               <Grid item xs={12}>
 
               </Grid>   
             </form>
             </div>
             </Container> 
+            <Grid item={12} style={{width : "40%", margin : "0 auto"}}>
+            <TableContainer >
+                  <Table className={classes.table} aria-label="simple table">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Name Of Author</TableCell>
+                        <TableCell align="right">Title Of Paper</TableCell>
+                        <TableCell>Volume(Issue) Page No.</TableCell>
+                        <TableCell>Title Of Journal</TableCell>
+                        <TableCell>Year</TableCell>
+                        <TableCell>Impact Factor</TableCell>
+                        <TableCell>ISSN</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {state.data.c99s99 && state.data.c99s99.map((row) => (
+                        <TableRow key={row.aName}>
+                          <TableCell component="th" scope="row">
+                            {row.aName}
+                          </TableCell>
+                          <TableCell align="right">{row.pTitle}</TableCell>
+                          <TableCell align="right">{row.pNo}</TableCell>
+                          <TableCell align="right">{row.jTitle}</TableCell>
+                          <TableCell align="right">{row.year}</TableCell>
+                          <TableCell align="right">{row.impactFactor}</TableCell>
+                          <TableCell align="right">{row.issn}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+           
+                </TableContainer>
+              </Grid>
+
         </div>
     )
 }

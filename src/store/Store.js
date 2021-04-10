@@ -20,7 +20,7 @@ class MyProvider extends React.Component {
     notices : [],
     quickLinks : [],
     criterion : 1,
-    step : 1,
+    step : 8,
     stepLabel : [
       "Curriculam Design & Devlopment",
       "Programmes/ Courses Focussed On Employability/Enterpreneurship/Skill Development During The Acedemic Year",
@@ -76,9 +76,13 @@ componentDidMount() {
        }) 
       },
       nextStep : ()=> {
+        document.body.scrollTop = 220;
+        document.documentElement.scrollTop = 220;
         this.setState({step : this.state.step + 1})
       },
       prevStep : ()=> {
+        document.body.scrollTop = 220;
+        document.documentElement.scrollTop = 220;
         this.setState({step : this.state.step - 1})
       },
       c1s2Add : (cName, cDate, pName, pDate)=> {

@@ -12,6 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
+import { useHistory } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -36,6 +37,20 @@ const useStyles = makeStyles((theme) => ({
 export default function Login(props) {
     const {type} = props
     const classes = useStyles();
+    // const {state, nextStep, addBtn, removeBtn} =  React.useContext(MyContext);
+    let history = useHistory();
+
+    
+    const handleSubmit = (e)=> {
+        e.preventDefault();
+        const formData = new FormData(e.target);
+        history.push("/aqar");
+        // loginAPI({
+        //   username : formData.get('username'),
+        //   password : formData.get('password')
+        // })
+
+    }
     return (
         <Container component="main" maxWidth="xs">
           <CssBaseline />
@@ -46,7 +61,7 @@ export default function Login(props) {
             <Typography component="h1" variant="h5">
               {`${type} Login`}
             </Typography>
-            <form className={classes.form} noValidate>
+            <form className={classes.form} onSubmit={handleSubmit}>
               <TextField
                 variant="outlined"
                 margin="normal"
