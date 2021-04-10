@@ -44,7 +44,7 @@ export default function FinalState() {
         <div>
       <Grid container spacing={2}>
           <Grid item xs={12} className={classes.GridClass}>
-              <Typography variant="body1">{state.stepLabel[0]}</Typography>
+            <center>  <Typography variant="body1"><b>{state.stepLabel[0]}</b></Typography> </center>
               <TableContainer >
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
@@ -69,7 +69,7 @@ export default function FinalState() {
             </TableContainer>
           </Grid>
           <Grid item xs={12} className={classes.GridClass}>
-            <Typography variant="body1">{state.stepLabel[1]}</Typography>
+          <center>  <Typography variant="body1"><b>{state.stepLabel[1]}</b></Typography> </center>
             <TableContainer >
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -96,7 +96,7 @@ export default function FinalState() {
                 </TableContainer>
             </Grid>
             <Grid item xs={12} className={classes.GridClass}>
-            <Typography variant="body1">{state.stepLabel[2]}</Typography>
+            <center>  <Typography variant="body1"><b>{state.stepLabel[2]}</b></Typography> </center>
             <TableContainer >
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -119,7 +119,7 @@ export default function FinalState() {
                 </TableContainer>
             </Grid>
             <Grid item xs={12} className={classes.GridClass}>
-            <Typography variant="body1">{state.stepLabel[3]}</Typography>
+            <center>  <Typography variant="body1"><b>{state.stepLabel[3]}</b></Typography> </center>
             <TableContainer >
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -142,7 +142,7 @@ export default function FinalState() {
                 </TableContainer>
             </Grid>
             <Grid item xs={12} className={classes.GridClass}>
-            <Typography variant="body1">{state.stepLabel[4]}</Typography>
+            <center>  <Typography variant="body1"><b>{state.stepLabel[4]}</b></Typography> </center>
             <TableContainer >
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -167,7 +167,7 @@ export default function FinalState() {
                 </TableContainer>
             </Grid>
             <Grid item xs={12} className={classes.GridClass}>
-            <Typography variant="body1">{state.stepLabel[5]}</Typography>
+            <center>  <Typography variant="body1"><b>{state.stepLabel[5]}</b></Typography> </center>
             <TableContainer >
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -190,7 +190,7 @@ export default function FinalState() {
                 </TableContainer>
             </Grid>
             <Grid item xs={12} className={classes.GridClass}>
-            <Typography variant="body1">{state.stepLabel[6]}</Typography>
+            <center>  <Typography variant="body1"><b>{state.stepLabel[6]}</b></Typography> </center>
             <TableContainer >
                   <Table className={classes.table} aria-label="simple table">
                       <TableRow>
