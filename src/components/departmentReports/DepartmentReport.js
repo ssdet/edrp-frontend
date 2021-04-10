@@ -213,7 +213,7 @@ export default function DepartmentReport() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> removeBtn(1,5)}
+                       onClick={()=> removeBtn(99,99)}
                         fullWidth
                         variant="contained"
                         color="primary"
