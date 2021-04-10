@@ -89,6 +89,7 @@ export default function DepartmentReport() {
                 year :formData.get("year"),
                 impactFactor : formData.get("impactFactor"),
                 issn : formData.get("issn"),
+                volume : formData.get("volume"),
 
             }
         )
@@ -133,12 +134,24 @@ export default function DepartmentReport() {
                 <Grid item xs={12}>
                   <TextField
                     autoComplete="fname"
+                    name="volume"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="pNos"
+                    label="Volume"
+                    autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="fname"
                     name="pNo"
                     variant="outlined"
                     required
                     fullWidth
                     id="pNo"
-                    label="Volume (Issue) Page No."
+                    label="Page No."
                     autoFocus
                   />
                 </Grid>
@@ -227,7 +240,7 @@ export default function DepartmentReport() {
             </form>
             </div>
             </Container> 
-            <Grid item={12} style={{width : "40%", margin : "0 auto"}}>
+            <Grid item={12} style={{width : "50%", margin : "0 auto"}}>
             <TableContainer >
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -239,6 +252,7 @@ export default function DepartmentReport() {
                         <TableCell>Year</TableCell>
                         <TableCell>Impact Factor</TableCell>
                         <TableCell>ISSN</TableCell>
+                        <TableCell>Volume</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
@@ -253,6 +267,7 @@ export default function DepartmentReport() {
                           <TableCell align="right">{row.year}</TableCell>
                           <TableCell align="right">{row.impactFactor}</TableCell>
                           <TableCell align="right">{row.issn}</TableCell>
+                          <TableCell align="right">{row.volume}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
