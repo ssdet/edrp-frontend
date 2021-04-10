@@ -20,7 +20,7 @@ class MyProvider extends React.Component {
     notices : [],
     quickLinks : [],
     criterion : 1,
-    step : 8,
+    step : 1,
     stepLabel : [
       "Curriculam Design & Devlopment",
       "Programmes/ Courses Focussed On Employability/Enterpreneurship/Skill Development During The Acedemic Year",
@@ -91,7 +91,7 @@ componentDidMount() {
           cName, cDate, pName, pDate
         })
         this.setState({
-          c1s2Rows : c1s2row
+          c1s2Rows : c1s2row  
         })
       },
       c1s2Remove : ()=> {
