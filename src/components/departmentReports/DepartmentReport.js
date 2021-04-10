@@ -12,7 +12,7 @@ import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 import Container from '@material-ui/core/Container';
-import { MyContext } from '../../../../store/Store';
+import { MyContext } from "../../store/Store";
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -42,38 +42,106 @@ const useStyles = makeStyles((theme) => ({
   remove : {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: theme.palette.secondary.main,
+  },
+  addAuthor : {
+      marginTop: theme.spacing(1)
   }
 }));
 
 
-export default function StepTwo() {
+export default function DepartmentReport() {
     const classes = useStyles();
-    const {state, nextStep, c1s2Add, c1s2Remove} =  React.useContext(MyContext);
+    const [author, setAuthor] = React.useState('');
+    const [authorArray, setAuthorArray] = React.useState(['']);
+    const {state, nextStep, addBtn, removeBtn} =  React.useContext(MyContext);
+
+    const handleChange = (e)=> {
+        e.preventDefault();
+        setAuthor(e.target.value);
+        console.log(e.target.value)
+    }
+
+    const addAuthor  = () => {
+        let temp = authorArray
+        temp.push(author)
+        setAuthorArray(temp)
+        console.log(authorArray)
+    }
+
+    const removeAuthor  = () => {
+        let temp = authorArray
+        temp.pop()
+        setAuthorArray(temp)
+        console.log(authorArray)
+    }
+
     const handleSubmit = (e)=> {
         e.preventDefault();
         const formData = new FormData(e.target);
-        c1s2Add(
-            formData.get("cName"),
-            formData.get("cDate"),
-            formData.get("pName"),
-            formData.get("pDate"),
+        addBtn(
+            1,
+            5,
+            {
+                vName : formData.get("vName"),
+                vDate : formData.get("vDate"),
+                sTotal : formData.get("sTotal")
+            }
         )
     }
     return (
         <div>
+            <Container component="main" maxWidth="xs">
+            <CssBaseline />
+            <div className={classes.paper}>
+            <Avatar className={classes.avatar}>
+              <LockOutlinedIcon />
+            </Avatar>
+            <Typography component="h1" variant="h5">
+             Evalutive Report Of The Department
+            </Typography>
              <form className={classes.form} onSubmit={handleSubmit}>
               <Grid container spacing={2}>
-                <Grid item xs={12} >
+                <Grid item xs={12} sm={6}>
                   <TextField
                     autoComplete="fname"
-                    name="pName"
+                    name="aName"
                     variant="outlined"
                     required
                     fullWidth
                     id="pName"
-                    label="Programme With Code"
+                    label="Name Of Author"
                     autoFocus
+                    value={author}
+                    onChange={handleChange}
                   />
+                </Grid>
+                <Grid item xs={12} sm={6}>
+                    <Grid container spacing={2}>
+                        <Grid item xs={12} sm={6}> 
+                              <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                onClick={addAuthor}
+                                className={classes.addAuthor}
+                             >Add</Button>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                              <Button
+                                fullWidth
+                                variant="contained"
+                                color="primary"
+                                onClick={removeAuthor}
+                                className={classes.addAuthor}
+                             >Remove</Button>
+                              </Grid>
+                        </Grid>
+               
+                </Grid>
+                <Grid item xs={12}>
+                {authorArray.map((row) => (
+                    <Typography key={row}>{row}</Typography>
+                      ))}
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -82,37 +150,23 @@ export default function StepTwo() {
                     required
                     fullWidth
                     type="date"
-                    name="password"
-                    label="Introduction Date - Programme"
+                    name="vDate"
+                    label="Introduction Date"
                     id="password"
                     autoComplete="current-password"
-                    name='pDate'
                   />
                 </Grid>
                 <Grid item xs={12} >
                   <TextField
                     autoComplete="fname"
-                    name="firstName"
+                    name="sTotal"
                     variant="outlined"
                     required
                     fullWidth
-                    id="firstName"
-                    label="Course With Code"
-                    name='cName'
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    defaultValue="2021-05-24"
-                    required
-                    fullWidth
-                    type="date"
-                    name="password"
-                    label="Date Of Introduction Course"
-                    id="password"
-                    autoComplete="current-password"
-                    name='cDate'
+                    id="sTotal"
+                    label="Total Students"
+                    autoFocus
+                    type="number"
                   />
                 </Grid>
               </Grid>
@@ -120,12 +174,11 @@ export default function StepTwo() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> c1s2Remove()}
+                       onClick={()=> removeBtn(1,5)}
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.remove}
-                        disabled={state.c1s2Rows.length === 0}
                       >
                         Remove
                       </Button>
@@ -146,21 +199,19 @@ export default function StepTwo() {
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Programme with Code</TableCell>
-                    <TableCell align="right">Introduction Date - Programme</TableCell>
-                    <TableCell align="right">Course With Code</TableCell>
-                    <TableCell align="right">Date Of Introduction Course</TableCell>
+                    <TableCell>Value Added Courses</TableCell>
+                    <TableCell align="right">Introduction Date</TableCell>
+                    <TableCell>Students Enrolled</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {state.c1s2Rows.map((row) => (
-                    <TableRow key={row.pName}>
+                  {state.data.c1s5 && state.data.c1s5.map((row) => (
+                    <TableRow key={row.vName}>
                       <TableCell component="th" scope="row">
-                        {row.pName}
+                        {row.vName}
                       </TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
-                      <TableCell align="right">{row.cName}</TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
+                      <TableCell align="right">{row.vDate}</TableCell>
+                      <TableCell align="right">{row.sTotal}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
@@ -168,8 +219,10 @@ export default function StepTwo() {
             </TableContainer>
               <Grid item xs={12}>
 
-              </Grid>
-            </form> 
+              </Grid>   
+            </form>
+            </div>
+            </Container> 
         </div>
     )
 }

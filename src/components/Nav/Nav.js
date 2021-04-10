@@ -10,11 +10,11 @@ export default function Nav() {
     
     <div className="Nav">
      
-       <div className='navLink'> <div className='navLinkText'>Login</div> </div>
+       <div className='navLink'> <div className='navLinkText'>Faculty Login</div> </div>
         <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
-       <div className='navLink'><div className='navLinkText'> Services</div></div>
+       <div className='navLink'><div className='navLinkText'>HOD Login</div></div>
         <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
-       <div className='navLink'><div className='navLinkText'> Notices</div></div>
+       <div className='navLink'><div className='navLinkText'> Director Login</div></div>
         <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
         <div className='navLink'> <div className='navLinkText'>Links</div> </div>
 

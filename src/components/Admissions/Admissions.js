@@ -27,37 +27,36 @@ export default function Admissions(props) {
     <Paper elevation={2}>
     <div className='AdmissionsDiv'>
         <div className='AdmissionsTitle'> <Typography variant="h5" component="h3">
-ADMISSIONS / FEE PAYMENTS
+IQAC : Internal Quality Assurance Cell
 </Typography></div>
 <Divider/>
     <div className='AdmissionsDivInner'> 
 
 <div className='PreAdmissionsSection'> 
-   <div className='PreAdmissionsTitle'> <Typography variant="h5" component="h5">
-New Applicants
+   <div className='PreAdmissionsTitle'> <Typography variant="h5" component="h5">  
+Director / HOD Login
 </Typography></div>
 <div className='PreAdmissionsInner'>
 <div className='AdmissionsSectionUG'> 
 <div className='AdmissionsInfo'>
  <div className='PreAddmissionsSubtitle'>
  <Typography variant="caption" display="block">
-        PRE-ADMISSION
+        IQAC
       </Typography>
  </div>
  <div className='PreAddmissionsTitle'> 
  <Typography variant="h6" component="h5" display="block">
-        UG/PG (2020-21)
+        Director Login
       </Typography>
  </div>
  <div className='PreAddmissionsBody'> 
   <Typography variant="body2" display="block">
-        body1. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-        unde suscipit, quam beatae rerum inventore consectetur,
+        Login As A Director To Access Annual Quality Assurance Report (AQAR) of the IQAC 
       </Typography>
  </div>
  <Divider/>
  <div className='PreAddmissionsBtn'> 
- <GreenButton>Apply Now </GreenButton>
+ <GreenButton>Login as Director </GreenButton>
  </div>
  </div>
 </div>
@@ -65,23 +64,22 @@ New Applicants
 <div className='AdmissionsInfo'>
  <div className='PreAddmissionsSubtitle'>
  <Typography variant="caption" display="block">
-        PRE-ADMISSION
+     IQAC
       </Typography>
  </div>
  <div className='PreAddmissionsTitle'> 
  <Typography variant="h6" component="h5" display="block">
-        PRE-PHD (2020-21)
+       HOD Login
       </Typography>
  </div>
  <div className='PreAddmissionsBody'> 
   <Typography variant="body2" display="block">
-         consectetur adipisicing elit. Quos blanditiis tenetur
-        unde suscipit, quam beatae rerum inventore consectetur,
+         Access All The Information regarding the Annual Quality Assurance Report (AQAR) of your department
       </Typography>
  </div>
  <Divider/>
  <div className='PreAddmissionsBtn'> 
- <GreenButton >Apply  Now</GreenButton>
+ <GreenButton >Login as HOD</GreenButton>
  </div>
  </div>
 </div>
@@ -90,28 +88,27 @@ New Applicants
 <div className='DesktopDivider'><Divider orientation='vertical' style={{'height' : '20em'}}/> </div>
 <div className='AdmissionsSection'> 
 <div className='CurrentAdmissionsTitle'> <Typography variant="h5" component="h5">
-Current Students
+Faculty Login
 </Typography></div>
 <div className='AdmissionsInfo'>
  <div className='PreAddmissionsSubtitle'>
  <Typography variant="caption" display="block">
-        ADMISSION
+         IQAC
       </Typography>
  </div>
  <div className='PreAddmissionsTitle'> 
  <Typography variant="h6" component="h5" display="block">
-        UG/PG (2020-21)
+        Faculty
       </Typography>
  </div>
  <div className='PreAddmissionsBody'> 
   <Typography variant="body2" display="block">
-        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quos blanditiis tenetur
-        unde suscipit, quam beatae rerum inventore consectetur,
+       Create/ Update Annual Quality Assurance Report (AQAR) of The IQAC
       </Typography>
  </div>
  <Divider/>
  <div className='PreAddmissionsBtn'> 
- <GreenButton>Apply Now </GreenButton>
+ <GreenButton>Login As Faculty </GreenButton>
  </div>
  </div>
 </div>

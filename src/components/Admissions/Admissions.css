@@ -27,6 +27,7 @@
 .AdmissionsTitle {
 	width: 100%;
 	text-align: center;
+	margin-bottom: 10px;
 }
 
 .PreAdmissionsSection {
@@ -48,7 +49,7 @@
 }
 .PreAddmissionsBody {
 	padding-top: .5em;
-	padding-bottom: .5em;
+	padding-bottom: .7em;
 }
 .PreAddmissionsBtn {
 	margin-top: .7em;

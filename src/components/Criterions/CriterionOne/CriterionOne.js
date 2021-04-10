@@ -3,7 +3,6 @@ import Avatar from '@material-ui/core/Avatar';
 import Button from '@material-ui/core/Button';
 import CssBaseline from '@material-ui/core/CssBaseline';
 import TextField from '@material-ui/core/TextField';
-import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Checkbox from '@material-ui/core/Checkbox';
 import Link from '@material-ui/core/Link';
 import Grid from '@material-ui/core/Grid';
@@ -15,6 +14,11 @@ import Container from '@material-ui/core/Container';
 import StepOne from './Steps/StepOne';
 import { MyContext } from '../../../store/Store';
 import StepTwo from './Steps/StepTwo';
+import StepThree from './Steps/StepThree';
+import StepFour from './Steps/StepFour';
+import StepFive from './Steps/StepFive';
+import StepSix from './Steps/StepSix';
+import StepSeven from './Steps/StepSeven';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -54,13 +58,18 @@ export default function CriterionOne() {
           <LockOutlinedIcon />
         </Avatar>
         <Typography component="h1" variant="h5">
-         Criterion I
+         Criterion I : Curricular Aspects
         </Typography>
         <Typography variant="body1" align="center">
       {state.stepLabel[state.step - 1]}
       </Typography>
        {state.step === 1 && <StepOne/>}
        {state.step === 2 && <StepTwo/>}
+       {state.step === 3 && <StepThree/>}
+       {state.step === 4 && <StepFour/>}
+       {state.step === 5 && <StepFive/>}
+       {state.step === 6 && <StepSix/>}
+       {state.step === 7 && <StepSeven/>}
        <Grid container spacing={2}> 
         <Grid item xs={6} sm={6}>
          <Button
@@ -70,8 +79,9 @@ export default function CriterionOne() {
             variant="contained"
             color="primary"
             className={classes.submit}
+            disabled={state.step <= 1}
           >
-            Back
+            {`Back : Step ${state.step - 1}`}
           </Button>
         </Grid>
         <Grid item xs={6} sm={6}>
@@ -83,7 +93,7 @@ export default function CriterionOne() {
             color="primary"
             className={classes.submit}
           >
-            Next
+            {`Next : Step ${state.step}`}
           </Button>
         </Grid>
        </Grid>

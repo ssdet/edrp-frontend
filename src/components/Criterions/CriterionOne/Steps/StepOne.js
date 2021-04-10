@@ -109,6 +109,7 @@ export default function StepOne() {
                         variant="contained"
                         color="primary"
                         className={classes.remove}
+                        disabled={state.c1s1Rows.length === 0}
                       >
                         Remove
                       </Button>

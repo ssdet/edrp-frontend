@@ -19,7 +19,10 @@ import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
-
+import Radio from '@material-ui/core/Radio';
+import RadioGroup from '@material-ui/core/RadioGroup';
+import FormControl from '@material-ui/core/FormControl';
+import FormLabel from '@material-ui/core/FormLabel';
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -42,21 +45,31 @@ const useStyles = makeStyles((theme) => ({
   remove : {
     margin: theme.spacing(3, 0, 2),
     backgroundColor: theme.palette.secondary.main,
+  },
+  gridRoot : {
+      marginTop : theme.spacing(1),
+      marginLeft : theme.spacing(1)
   }
 }));
 
 
-export default function StepTwo() {
+export default function StepFour() {
     const classes = useStyles();
-    const {state, nextStep, c1s2Add, c1s2Remove} =  React.useContext(MyContext);
+    const {state, nextStep, addBtn, removeBtn} =  React.useContext(MyContext);
     const handleSubmit = (e)=> {
         e.preventDefault();
         const formData = new FormData(e.target);
-        c1s2Add(
-            formData.get("cName"),
-            formData.get("cDate"),
-            formData.get("pName"),
-            formData.get("pDate"),
+        addBtn(
+            1,
+            4,
+            {
+                pName : formData.get("pName"),
+                pDate : formData.get("pDate"),
+                pUG : formData.get("pUG"),
+                pPG : formData.get("pPG"),
+                iUG : formData.get("iUG"),
+                iPG : formData.get("iPG"),
+            }
         )
     }
     return (
@@ -71,9 +84,31 @@ export default function StepTwo() {
                     required
                     fullWidth
                     id="pName"
-                    label="Programme With Code"
+                    label="Programme/Course"
                     autoFocus
                   />
+                </Grid>
+                <Grid item xs={12}>
+                <Grid container className={classes.gridRoot}> 
+                         <Grid item xs={12} sm={6}>
+                        <FormControl component="fieldset" disabled>
+                              <FormLabel component="legend">UG</FormLabel>
+                              <RadioGroup aria-label="gender" name="pUG" row value="Yes">
+                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                              </RadioGroup>
+                            </FormControl>
+                        </Grid>
+                        <Grid item xs={12} sm={6}>
+                        <FormControl component="fieldset" disabled>
+                              <FormLabel component="legend">PG</FormLabel>
+                              <RadioGroup aria-label="gender" name="pPG" row value="Yes">
+                                <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                                <FormControlLabel value="No" control={<Radio />} label="No" />
+                              </RadioGroup>
+                            </FormControl>
+                        </Grid>
+                      </Grid>
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
@@ -82,50 +117,44 @@ export default function StepTwo() {
                     required
                     fullWidth
                     type="date"
-                    name="password"
-                    label="Introduction Date - Programme"
+                    label="Date Of Implementation"
                     id="password"
                     autoComplete="current-password"
                     name='pDate'
                   />
                 </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="fname"
-                    name="firstName"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="Course With Code"
-                    name='cName'
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    defaultValue="2021-05-24"
-                    required
-                    fullWidth
-                    type="date"
-                    name="password"
-                    label="Date Of Introduction Course"
-                    id="password"
-                    autoComplete="current-password"
-                    name='cDate'
-                  />
-                </Grid>
+              </Grid>
+              <Grid item xs={12}>
+                <Grid container className={classes.gridRoot}> 
+                     <Grid item xs={12} sm={6}>
+                      <FormControl component="fieldset" disabled>
+                          <FormLabel component="legend">UG</FormLabel>
+                          <RadioGroup aria-label="gender" name="iUG" row  value="Yes">
+                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                          </RadioGroup>
+                        </FormControl>
+                    </Grid>
+                    <Grid item xs={12} sm={6}>
+                    <FormControl component="fieldset" disabled>
+                          <FormLabel component="legend">PG</FormLabel>
+                          <RadioGroup aria-label="gender" name="iPG" row value="Yes">
+                            <FormControlLabel value="Yes" control={<Radio />} label="Yes" />
+                            <FormControlLabel value="No" control={<Radio />} label="No" />
+                          </RadioGroup>
+                        </FormControl>
+                    </Grid>
+                  </Grid>
               </Grid>
               <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> c1s2Remove()}
+                       onClick={()=> removeBtn(1,4)}
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.remove}
-                        disabled={state.c1s2Rows.length === 0}
                       >
                         Remove
                       </Button>
@@ -146,21 +175,17 @@ export default function StepTwo() {
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Programme with Code</TableCell>
-                    <TableCell align="right">Introduction Date - Programme</TableCell>
-                    <TableCell align="right">Course With Code</TableCell>
-                    <TableCell align="right">Date Of Introduction Course</TableCell>
+                    <TableCell>Programme/Course</TableCell>
+                    <TableCell align="right">Introduction Date</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {state.c1s2Rows.map((row) => (
+                  {state.data.c1s4 && state.data.c1s4.map((row) => (
                     <TableRow key={row.pName}>
                       <TableCell component="th" scope="row">
                         {row.pName}
                       </TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
-                      <TableCell align="right">{row.cName}</TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
+                      <TableCell align="right">{row.pDate}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

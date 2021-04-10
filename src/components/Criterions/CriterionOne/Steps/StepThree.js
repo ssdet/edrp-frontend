@@ -46,15 +46,13 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function StepTwo() {
+export default function StepThree() {
     const classes = useStyles();
-    const {state, nextStep, c1s2Add, c1s2Remove} =  React.useContext(MyContext);
+    const {state, nextStep, c1s3Add, c1s3Remove} =  React.useContext(MyContext);
     const handleSubmit = (e)=> {
         e.preventDefault();
         const formData = new FormData(e.target);
-        c1s2Add(
-            formData.get("cName"),
-            formData.get("cDate"),
+        c1s3Add(
             formData.get("pName"),
             formData.get("pDate"),
         )
@@ -71,7 +69,7 @@ export default function StepTwo() {
                     required
                     fullWidth
                     id="pName"
-                    label="Programme With Code"
+                    label="Programme/Course"
                     autoFocus
                   />
                 </Grid>
@@ -82,37 +80,11 @@ export default function StepTwo() {
                     required
                     fullWidth
                     type="date"
-                    name="password"
-                    label="Introduction Date - Programme"
+                    name="pDate"
+                    label="Introduction Date"
                     id="password"
                     autoComplete="current-password"
                     name='pDate'
-                  />
-                </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="fname"
-                    name="firstName"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="firstName"
-                    label="Course With Code"
-                    name='cName'
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    defaultValue="2021-05-24"
-                    required
-                    fullWidth
-                    type="date"
-                    name="password"
-                    label="Date Of Introduction Course"
-                    id="password"
-                    autoComplete="current-password"
-                    name='cDate'
                   />
                 </Grid>
               </Grid>
@@ -120,12 +92,11 @@ export default function StepTwo() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> c1s2Remove()}
+                       onClick={()=> c1s3Remove()}
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.remove}
-                        disabled={state.c1s2Rows.length === 0}
                       >
                         Remove
                       </Button>
@@ -146,21 +117,17 @@ export default function StepTwo() {
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Programme with Code</TableCell>
-                    <TableCell align="right">Introduction Date - Programme</TableCell>
-                    <TableCell align="right">Course With Code</TableCell>
-                    <TableCell align="right">Date Of Introduction Course</TableCell>
+                    <TableCell>Programme/Course</TableCell>
+                    <TableCell align="right">Introduction Date</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {state.c1s2Rows.map((row) => (
+                  {state.c1s3Rows.map((row) => (
                     <TableRow key={row.pName}>
                       <TableCell component="th" scope="row">
                         {row.pName}
                       </TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
-                      <TableCell align="right">{row.cName}</TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
+                      <TableCell align="right">{row.pDate}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>

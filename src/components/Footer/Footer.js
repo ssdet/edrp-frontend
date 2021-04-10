@@ -76,7 +76,7 @@ Hemavati Nandan Bahuguna Garhwal University, Srinagar ( Garhwal)
 246174, Dist. Pauri (Garhwal), Uttarakhand, India
 </div>
 
-<div className='bottomFooterText'>Developed & Maintained By E-Governance Cell, HNB Garhwal University</div>
+<div className='bottomFooterText'>Developed & Maintained By IQAC Cell, HNB Garhwal University</div>
 </div>
 <div className='bottomFooter'>Copyright © 2020 - All Rights Reserved - HNB Garhwal University </div>
     </div>

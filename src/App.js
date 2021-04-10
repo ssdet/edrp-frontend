@@ -10,6 +10,15 @@ import { Typography } from '@material-ui/core';
 import Login from './components/Login/Login';
 import Register from './components/Register/Register';
 import CriterionOne from './components/Criterions/CriterionOne/CriterionOne';
+import LoginCard from './components/Cards/LoginCard';
+import Admissions from './components/Admissions/Admissions';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link
+} from "react-router-dom";
+import DepartmentReport from './components/departmentReports/DepartmentReport';
 
 
 
@@ -18,14 +27,38 @@ function App() {
 
   return (
     <MyProvider>
+
     <div className="App">
-      <Header/>
-      <HeaderBranding/>
-     <Nav/>
+       <Router>
+       <Header/>
+        <HeaderBranding/>
+       <Nav/>
+      
+       <Switch>
+          <Route path="/login/director">
+            <Login type="Director"/>
+          </Route>
+          <Route path="/login/faculty">
+            <Login type="Faculty"/>
+          </Route>
+          <Route path="/login/hod">
+            <Login type="HOD"/>
+          </Route>
+          <Route path="/aqar">
+           <CriterionOne/>
+          </Route>
+          <Route path="/erod">
+            <DepartmentReport/>
+          </Route>
+          <Route path="/">
+          <Admissions/>
+          </Route>
+        </Switch>
+       </Router>
      {/* <Home/> */}
     {/* <Login type="Director"/>
     <Register/> */}
-    <CriterionOne/>
+    {/* <CriterionOne/> */}
     </div>
      <Footer/>
  </MyProvider>

@@ -46,17 +46,19 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function StepTwo() {
+export default function StepSix() {
     const classes = useStyles();
-    const {state, nextStep, c1s2Add, c1s2Remove} =  React.useContext(MyContext);
+    const {state, nextStep, addBtn, removeBtn} =  React.useContext(MyContext);
     const handleSubmit = (e)=> {
         e.preventDefault();
         const formData = new FormData(e.target);
-        c1s2Add(
-            formData.get("cName"),
-            formData.get("cDate"),
-            formData.get("pName"),
-            formData.get("pDate"),
+        addBtn(
+            1,
+            6,
+            {
+                pTitle : formData.get("pTitle"),
+                sName : formData.get("sName"),
+            }
         )
     }
     return (
@@ -66,53 +68,25 @@ export default function StepTwo() {
                 <Grid item xs={12} >
                   <TextField
                     autoComplete="fname"
-                    name="pName"
+                    name="pTitle"
                     variant="outlined"
                     required
                     fullWidth
                     id="pName"
-                    label="Programme With Code"
+                    label="Project/Programme Title"
                     autoFocus
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    defaultValue="2021-05-24"
-                    required
-                    fullWidth
-                    type="date"
-                    name="password"
-                    label="Introduction Date - Programme"
-                    id="password"
-                    autoComplete="current-password"
-                    name='pDate'
                   />
                 </Grid>
                 <Grid item xs={12} >
                   <TextField
                     autoComplete="fname"
-                    name="firstName"
+                    name="sName"
                     variant="outlined"
                     required
                     fullWidth
-                    id="firstName"
-                    label="Course With Code"
-                    name='cName'
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    variant="outlined"
-                    defaultValue="2021-05-24"
-                    required
-                    fullWidth
-                    type="date"
-                    name="password"
-                    label="Date Of Introduction Course"
-                    id="password"
-                    autoComplete="current-password"
-                    name='cDate'
+                    id="sTotal"
+                    label="Student Name"
+                    autoFocus
                   />
                 </Grid>
               </Grid>
@@ -120,12 +94,11 @@ export default function StepTwo() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> c1s2Remove()}
+                       onClick={()=> removeBtn(1,6)}
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.remove}
-                        disabled={state.c1s2Rows.length === 0}
                       >
                         Remove
                       </Button>
@@ -146,21 +119,19 @@ export default function StepTwo() {
               <Table className={classes.table} aria-label="simple table">
                 <TableHead>
                   <TableRow>
-                    <TableCell>Programme with Code</TableCell>
-                    <TableCell align="right">Introduction Date - Programme</TableCell>
-                    <TableCell align="right">Course With Code</TableCell>
-                    <TableCell align="right">Date Of Introduction Course</TableCell>
+                    <TableCell>Value Added Courses</TableCell>
+                    <TableCell align="right">Introduction Date</TableCell>
+                    <TableCell>Students Enrolled</TableCell>
                   </TableRow>
                 </TableHead>
                 <TableBody>
-                  {state.c1s2Rows.map((row) => (
-                    <TableRow key={row.pName}>
+                  {state.data.c1s6 && state.data.c1s6.map((row) => (
+                    <TableRow key={row.vName}>
                       <TableCell component="th" scope="row">
-                        {row.pName}
+                        {row.vName}
                       </TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
-                      <TableCell align="right">{row.cName}</TableCell>
-                      <TableCell align="right">{row.cDate}</TableCell>
+                      <TableCell align="right">{row.vDate}</TableCell>
+                      <TableCell align="right">{row.sTotal}</TableCell>
                     </TableRow>
                   ))}
                 </TableBody>
