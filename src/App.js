@@ -24,7 +24,6 @@ import DepartmentReport from './components/departmentReports/DepartmentReport';
 
 function App() {
 
-
   return (
     <MyProvider>
 

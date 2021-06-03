@@ -1,3 +1,4 @@
+import axios from 'axios';
 import React from 'react';
 import {GLOBAL_URL} from '../config/Config.js';
 
@@ -17,6 +18,7 @@ class MyProvider extends React.Component {
   constructor(props){
     super(props);
   this.state = {
+    isLoggedIn : localStorage.getItem('token') ? true : false,
     notices : [],
     quickLinks : [],
     criterion : 1,
@@ -34,27 +36,14 @@ class MyProvider extends React.Component {
     c1s2Rows : [],
     c1s3Rows : [],
     c1s4Rows : [],
-    data : {}
+    data : {},
+    user : {}
 
   }
 }
 
 componentDidMount() {
-  //  serverRequest('?type=notices').then(response=>response.json()).then((response)=> {
-          
-  //         if(response.success) {
-  //           this.setState({notices : response.notices});
-  //         }
-       
-  //       })
 
-  //  serverRequest('?type=quickLinks').then(response=>response.json()).then((response)=> {
-          
-  //         if(response.success) {
-  //           this.setState({quickLinks : response.quickLinks});
-  //         }
-       
-  //       })
 }
 
   render() {
@@ -69,16 +58,64 @@ componentDidMount() {
         })
         }, 
        fetchQuickLinks : () => {
-        serverRequest('?type=quickLinks').then((response)=> {
-        
-         console.log(response);
-       
-       }) 
       },
+
+
+      loginUser : (data) => {
+        axios.post('auth/token/login/', {
+          email : data.username,
+          password : data.password,
+        }).then((res)=> {
+          console.log(res)
+          this.setState({
+            token : res.data.auth_token,
+            isLoggedIn : true
+          })
+          localStorage.setItem('token', res.data.auth_token)
+        })
+        .then((res2)=> {
+          axios.get('auth/users/me/').then((res3)=> {
+            this.setState({
+              user : res3.data
+            })
+            window.location.reload()
+            console.log( res3.data)
+            })
+          })
+          .catch((err)=> {
+            localStorage.removeItem('token')
+            window.location.reload()
+          })
+    },
+    aboutUser : ()=> {
+      axios.get('auth/users/me/').then((res3)=> {
+        this.setState({
+          user : res3.data
+        })
+        console.log( res3.data)
+        })
+    },
+      logoutUser : () => {
+        axios.post('auth/token/logout/')
+        .then((res)=> {
+         this.setState({
+           token : null,
+           isLoggedIn : false
+         })
+         localStorage.removeItem('token')
+         window.location.reload();
+        })
+      },
+
+
       nextStep : ()=> {
         document.body.scrollTop = 220;
         document.documentElement.scrollTop = 220;
         this.setState({step : this.state.step + 1})
+      },
+      goToStep : (val)=> {
+        let step = val +1
+        this.setState({step : step})
       },
       prevStep : ()=> {
         document.body.scrollTop = 220;

@@ -9,8 +9,10 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link
+  Link,
+  Redirect
 } from "react-router-dom";
+import { MyContext } from '../../store/Store';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -25,8 +27,11 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 export default function Admissions(props) {
+  const {state} = React.useContext(MyContext)
    const classes = useStyles();
-  
+  if(state.isLoggedIn) {
+    return <Redirect to="/aqar"/>
+  }
   return (
    
     <div className="Admissions">
@@ -95,7 +100,7 @@ Director / HOD Login
 <div className='DesktopDivider'><Divider orientation='vertical' style={{'height' : '20em'}}/> </div>
 <div className='AdmissionsSection'> 
 <div className='CurrentAdmissionsTitle'> <Typography variant="h5" component="h5">
-Faculty Login
+Employee Login
 </Typography></div>
 <div className='AdmissionsInfo'>
  <div className='PreAddmissionsSubtitle'>
@@ -115,7 +120,7 @@ Faculty Login
  </div>
  <Divider/>
  <div className='PreAddmissionsBtn'> 
- <Link to="/login/faculty" style={{textDecoration: "none"}}><GreenButton >Login As Faculty </GreenButton></Link>
+ <Link to="/login/faculty" style={{textDecoration: "none"}}><GreenButton >Login As Employee </GreenButton></Link>
  </div>
  </div>
 </div>
