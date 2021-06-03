@@ -62,30 +62,35 @@ componentDidMount() {
 
 
       loginUser : (data) => {
-        axios.post('auth/token/login/', {
-          email : data.username,
-          password : data.password,
-        }).then((res)=> {
-          console.log(res)
-          this.setState({
-            token : res.data.auth_token,
-            isLoggedIn : true
-          })
-          localStorage.setItem('token', res.data.auth_token)
+        this.setState({
+          token : "",
+          isLoggedIn : true
         })
-        .then((res2)=> {
-          axios.get('auth/users/me/').then((res3)=> {
-            this.setState({
-              user : res3.data
-            })
-            window.location.reload()
-            console.log( res3.data)
-            })
-          })
-          .catch((err)=> {
-            localStorage.removeItem('token')
-            window.location.reload()
-          })
+       
+        // axios.post('auth/token/login/', {
+        //   email : data.username,
+        //   password : data.password,
+        // }).then((res)=> {
+        //   console.log(res)
+        //   this.setState({
+        //     token : res.data.auth_token,
+        //     isLoggedIn : true
+        //   })
+        //   localStorage.setItem('token', res.data.auth_token)
+        // })
+        // .then((res2)=> {
+        //   axios.get('auth/users/me/').then((res3)=> {
+        //     this.setState({
+        //       user : res3.data
+        //     })
+        //     window.location.reload()
+        //     console.log( res3.data)
+        //     })
+        //   })
+        //   .catch((err)=> {
+        //     localStorage.removeItem('token')
+        //     window.location.reload()
+        //   })
     },
     aboutUser : ()=> {
       axios.get('auth/users/me/').then((res3)=> {
