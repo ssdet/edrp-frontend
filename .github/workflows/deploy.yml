@@ -36,7 +36,7 @@ jobs:
             ${{ runner.os }}-node-
             ${{ runner.os }}-
       - name: ⛏ Building
-        run: npm install && npm run --silent build
+        run: npm install && CI=false npm run build
       - name: Deploy To Production
         uses: reggionick/s3-deploy@v3
         with:
