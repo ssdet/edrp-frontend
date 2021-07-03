@@ -9,3 +9,5 @@ if(process.env.NODE_ENV === 'development') {
     GLOBAL_URL = 'https://api.hnbguiqac.in/api'
   }
 // https://corsanywhere.herokuapp.com/https://freereddittesting.000webhostapp.com/api/
+
+export {GLOBAL_URL}
