@@ -5,8 +5,10 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 import { createMuiTheme } from '@material-ui/core/styles';
 import { ThemeProvider } from '@material-ui/styles';
+import { SnackbarProvider } from 'notistack';
 import axios from 'axios';
 import { GLOBAL_URL } from './config/Config';
+import { Slide } from '@material-ui/core';
 
 axios.defaults.baseURL = GLOBAL_URL;
 if(localStorage.getItem('token')) {
@@ -59,7 +61,18 @@ const theme = createMuiTheme({
 ReactDOM.render(
   <React.StrictMode>
      <ThemeProvider theme={theme}>
-      <App />
+      <SnackbarProvider
+        hideIconVariant
+        dense={false}
+        preventDuplicate
+        anchorOrigin={{
+          vertical: 'top',
+          horizontal: 'right',
+      }}
+      TransitionComponent={Slide}
+      >
+        <App />
+      </SnackbarProvider>
     </ThemeProvider>
   </React.StrictMode>,
   document.getElementById('root')

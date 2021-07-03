@@ -72,7 +72,7 @@ Contact Us
 <Divider style={{'background' : 'green', width : '2px'}}/>
 <div className='footerAddress'> 
  <div className='UniAddress'>
-Hemavati Nandan Bahuguna Garhwal University, Srinagar ( Garhwal)
+Hemvati Nandan Bahuguna Garhwal University, Srinagar ( Garhwal)
 246174, Dist. Pauri (Garhwal), Uttarakhand, India
 </div>
 

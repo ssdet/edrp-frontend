@@ -47,16 +47,22 @@ const useStyles = makeStyles((theme) => ({
 
 
 export default function StepOne() {
+    const critertion = 1
+    const criterionStep = 11
     const classes = useStyles();
-    const {state, nextStep, c1s1Add, c1s1Remove} =  React.useContext(MyContext);
+    const {state, nextStep, addBtn, removeBtn} =  React.useContext(MyContext);
 
     const handleSubmit = (e)=> {
         e.preventDefault();
         const formData = new FormData(e.target);
-        c1s1Add(
-            formData.get("pName"),
-            formData.get("pCode"),
-            formData.get("pDate"),
+        let data = {}
+        for (var key of formData.keys()) {
+          data[key] = formData.get([key])
+       }
+        addBtn(
+            1,
+            11,
+            data
         )
     }
     return (
@@ -104,12 +110,11 @@ export default function StepOne() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> c1s1Remove()}
+                       onClick={()=> removeBtn(1,11)}
                         fullWidth
                         variant="contained"
                         color="primary"
                         className={classes.remove}
-                        disabled={state.c1s1Rows.length === 0}
                       >
                         Remove
                       </Button>
@@ -136,7 +141,7 @@ export default function StepOne() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {state.c1s1Rows.map((row) => (
+                      {state.data.c111 && state.data.c111.map((row) => (
                         <TableRow key={row.pName}>
                           <TableCell component="th" scope="row">
                             {row.pName}

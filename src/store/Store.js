@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React from 'react';
 import {GLOBAL_URL} from '../config/Config.js';
+import { withSnackbar } from 'notistack';
 
 const MyContext = React.createContext();
 
@@ -12,6 +13,15 @@ const serverRequest = async(params)=> {
 
 }
 
+const CRITERION_STR_MAP = {
+  1 : "criterionone",
+  2 : "criteriontwo",
+  3 : "criterionthree",
+  4 : "criterionfour",
+  5 : "criterionfive",
+  6 : "criterionsix",
+  7 : "criterionseven"
+}
 
 // Then create a provider Component
 class MyProvider extends React.Component {
@@ -32,10 +42,6 @@ class MyProvider extends React.Component {
       "Field Projects/ Internships under taken during the year",
       "Whether Structured feedback recieved from all the stakeholders"
     ],
-    c1s1Rows : [],
-    c1s2Rows : [],
-    c1s3Rows : [],
-    c1s4Rows : [],
     data : {},
     user : {}
 
@@ -50,47 +56,37 @@ componentDidMount() {
     return (
       <MyContext.Provider value = {{ 
         state: this.state,
-        fetchNotices :()=> {
-          serverRequest('?type=notices').then((response)=> {
-
-          console.log(response);
-       
-        })
-        }, 
-       fetchQuickLinks : () => {
-      },
-
 
       loginUser : (data) => {
         this.setState({
           token : "",
           isLoggedIn : true
         })
-       
-        // axios.post('auth/token/login/', {
-        //   email : data.username,
-        //   password : data.password,
-        // }).then((res)=> {
-        //   console.log(res)
-        //   this.setState({
-        //     token : res.data.auth_token,
-        //     isLoggedIn : true
-        //   })
-        //   localStorage.setItem('token', res.data.auth_token)
-        // })
-        // .then((res2)=> {
-        //   axios.get('auth/users/me/').then((res3)=> {
-        //     this.setState({
-        //       user : res3.data
-        //     })
-        //     window.location.reload()
-        //     console.log( res3.data)
-        //     })
-        //   })
-        //   .catch((err)=> {
-        //     localStorage.removeItem('token')
-        //     window.location.reload()
-        //   })
+        //localStorage.setItem('token', "res.data.auth_token")
+        axios.post('auth/token/login/', {
+          email : data.username,
+          password : data.password,
+        }).then((res)=> {
+          console.log(res)
+          this.setState({
+            token : res.data.auth_token,
+            isLoggedIn : true
+          })
+          localStorage.setItem('token', res.data.auth_token)
+        })
+        .then((res2)=> {
+          axios.get('auth/users/me/').then((res3)=> {
+            this.setState({
+              user : res3.data
+            })
+            window.location.reload()
+            console.log( res3.data)
+            })
+          })
+          .catch((err)=> {
+            localStorage.removeItem('token')
+            window.location.reload()
+          })
     },
     aboutUser : ()=> {
       axios.get('auth/users/me/').then((res3)=> {
@@ -112,10 +108,19 @@ componentDidMount() {
         })
       },
 
+      postCriterionStep : (stepId, stepData)=> {
+        axios.post(`${stepId}/`).then((res3)=> {
+          this.setState({
+            user : res3.data
+          })
+          })
+      },
+
+      
 
       nextStep : ()=> {
-        document.body.scrollTop = 220;
-        document.documentElement.scrollTop = 220;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         this.setState({step : this.state.step + 1})
       },
       goToStep : (val)=> {
@@ -123,85 +128,65 @@ componentDidMount() {
         this.setState({step : step})
       },
       prevStep : ()=> {
-        document.body.scrollTop = 220;
-        document.documentElement.scrollTop = 220;
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
         this.setState({step : this.state.step - 1})
       },
-      c1s2Add : (cName, cDate, pName, pDate)=> {
-        let c1s2row = this.state.c1s2Rows;
-        c1s2row.push({
-          cName, cDate, pName, pDate
-        })
-        this.setState({
-          c1s2Rows : c1s2row  
-        })
-      },
-      c1s2Remove : ()=> {
-        let c1s2row = this.state.c1s2Rows;
-        c1s2row.pop()
-        this.setState({
-          c1s2Rows : c1s2row
-        })
-      },
-      c1s1Add : (pName, pCode, pDate)=> {
-        let c1s1row = this.state.c1s1Rows;
-        c1s1row.push({
-         pName, pCode, pDate
-        })
-        this.setState({
-          c1s1Rows : c1s1row
-        })
-      },
-      c1s1Remove : ()=> {
-        let c1s1row = this.state.c1s1Rows;
-        c1s1row.pop()
-        this.setState({
-          c1s1Rows : c1s1row
-        })
-      },
-      c1s3Add : (pName, pDate)=> {
-        let temp = this.state.c1s3Rows;
-        temp.push({
-         pName, pDate
-        })
-        this.setState({
-          c1s3Rows : temp
-        })
-      },
-      c1s3Remove : ()=> {
-        let temp = this.state.c1s3Rows;
-        temp.pop()
-        this.setState({
-          c1s3Rows : temp
-        })
-      },
-
-      addBtn : (critertion, step, entry)=> {
+      addBtn : async (critertion, step, entry)=> {
         let temp = []
-        if(this.state.data[`c${critertion}s${step}`]) {
-          temp = this.state.data[`c${critertion}s${step}`]
+        if(this.state.data[`c${critertion}${step}`]) {
+          temp = this.state.data[`c${critertion}${step}`]
         }
         temp.push(entry)
-        this.setState({
-          data : {
-            ...this.state.data,
-            [`c${critertion}s${step}`] : temp
-          }
+
+        let criterionId = await (await axios.get(`${CRITERION_STR_MAP[critertion]}`)).data
+        console.log(criterionId )
+        axios.post(`c${critertion}${step}/`, {...entry, criterion : criterionId.id}).then(async (res)=> {
+          console.log(criterionId)
+          this.setState({
+            data : {
+              ...this.state.data,
+              [`c${critertion}${step}`] : temp
+            }
+          })
+          this.props.enqueueSnackbar("Data Saved", { 
+            variant: 'default',
         })
+          })
+        .catch((err) => {
+          this.props.enqueueSnackbar(err, { 
+            variant: 'warning',
+        })
+        })
+
       },
       removeBtn : (critertion, step)=> {
-        let temp = this.state.data[`c${critertion}s${step}`];
+        let temp = this.state.data[`c${critertion}${step}`];
         temp.pop()
         this.setState({
           data : {
             ...this.state.data,
-            [`c${critertion}s${step}`] : temp
+            [`c${critertion}${step}`] : temp
           }
         })
-      }
+        
+        this.props.enqueueSnackbar("Data Removed", { 
+          variant: 'default',
+      })
+      },
 
+      fetchStepData : async(critertion, step)=> {
+        let res = await (await axios.get(`c${critertion}${step}`)).data
+        console.log(res)
+        // this.setState({
+        //   data : {
+        //     ...this.state.data,
+        //     [`c${critertion}${step}`] : res
+        //   }
+        // })
+
+      }
       }}
-      	
       	>
         {this.props.children}
       </MyContext.Provider>
@@ -211,4 +196,4 @@ componentDidMount() {
 
 export {MyContext};
 
-export default MyProvider;
+export default withSnackbar(MyProvider);

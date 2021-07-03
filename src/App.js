@@ -19,6 +19,9 @@ import {
   Link
 } from "react-router-dom";
 import DepartmentReport from './components/departmentReports/DepartmentReport';
+import CriterionTwo from './components/Criterions/CriterionTwo/CriterionTwo';
+import { Form } from './components/forms/FormElements';
+import CriterionHOC from './components/Templates/CriterionHOC';
 
 
 
@@ -43,8 +46,11 @@ function App() {
           <Route path="/login/hod">
             <Login type="HOD"/>
           </Route>
-          <Route path="/aqar">
+          {/* <Route path="/aqar">
            <CriterionOne/>
+          </Route> */}
+          <Route path="/aqar">
+           <CriterionHOC/>
           </Route>
           <Route path="/erod">
             <DepartmentReport/>

@@ -32,7 +32,7 @@ function TabPanel(props) {
 
   return (
     <div
-      role="tabpanel"
+      role='tabpanel'
       hidden={value !== index}
       id={`simple-tabpanel-${index}`}
       aria-labelledby={`simple-tab-${index}`}
@@ -77,14 +77,14 @@ function SimpleTabs() {
 
   return (
     <div className={classes.root}>
-      <AppBar position="static" color="inherit">
-        <Tabs value={value} onChange={handleChange} aria-label="simple tabs example">
-          <Tab label="Item One" {...a11yProps(0)} />
-          <Tab label="Item Two" {...a11yProps(1)} />
-          <Tab label="Item Three" {...a11yProps(2)} />
-          <Tab label="Item Three" {...a11yProps(3)} />
-          <Tab label="Item Three" {...a11yProps(4)} />
-          <Tab label="Item Three" {...a11yProps(5)} />
+      <AppBar position='static' color='inherit'>
+        <Tabs value={value} onChange={handleChange} aria-label='simple tabs example'>
+          <Tab label='Item One' {...a11yProps(0)} />
+          <Tab label='Item Two' {...a11yProps(1)} />
+          <Tab label='Item Three' {...a11yProps(2)} />
+          <Tab label='Item Three' {...a11yProps(3)} />
+          <Tab label='Item Three' {...a11yProps(4)} />
+          <Tab label='Item Three' {...a11yProps(5)} />
         </Tabs>
       </AppBar>
       <TabPanel value={value} index={0}>
@@ -131,33 +131,33 @@ export default function CriterionOne() {
   },[])
 
   if(!state.isLoggedIn) {
-    return <Redirect to="/"/>
+    return <Redirect to='/'/>
   }
   return (
-    <Container component="main" maxWidth="xs">
+    <Container component='main' maxWidth='xs'>
       <CssBaseline />
       <div className={classes.paper}>
         <Avatar className={classes.avatar}>
           <LockOutlinedIcon />
         </Avatar>
-        <Typography component="h1" variant="h5">
+        <Typography component='h1' variant='h5'>
          Criterion I : Curricular Aspects
         </Typography>
-        <Typography variant="body1" align="center">
+        <Typography variant='body1' align='center'>
       {state.stepLabel[state.step - 1]}
       </Typography>
-      <div style={{'position': 'absolute', width : "100%", marginTop : "-50px"}}>
+      <div style={{'position': 'absolute', width : '100%', marginTop : '-50px'}}>
         <Tabs value={state.step-1} onChange={(e, val)=>{
           goToStep(val)
-          }} aria-label="simple tabs example">
-          <Tab label="1.1.1" {...a11yProps(0)} />
-          <Tab label="1.1.2" {...a11yProps(1)} />
-          <Tab label="1.2.1" {...a11yProps(2)} />
-          <Tab label="1.3.1" {...a11yProps(3)} />
-          <Tab label="1.3.2" {...a11yProps(4)} />
-          <Tab label="1.3.2" {...a11yProps(5)} />
-          <Tab label="1.4.1" {...a11yProps(6)} />
-          <Tab label="1.4.2" {...a11yProps(7)} />
+          }} aria-label='simple tabs example'>
+          <Tab label='1.1.1' {...a11yProps(0)} />
+          <Tab label='1.1.2' {...a11yProps(1)} />
+          <Tab label='1.2.1' {...a11yProps(2)} />
+          <Tab label='1.3.1' {...a11yProps(3)} />
+          <Tab label='1.3.2' {...a11yProps(4)} />
+          <Tab label='1.3.2' {...a11yProps(5)} />
+          <Tab label='1.4.1' {...a11yProps(6)} />
+          <Tab label='1.4.2' {...a11yProps(7)} />
         </Tabs>
       </div>
       <TabPanel value={state.step-1} index={0}>
@@ -195,11 +195,11 @@ export default function CriterionOne() {
        <Grid container spacing={2}> 
         <Grid item xs={6} sm={6}>
          <Button
-           // type="submit"
+           // type='submit'
            onClick={()=> prevStep()}
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.submit}
             disabled={state.step <= 1}
           >
@@ -208,11 +208,11 @@ export default function CriterionOne() {
         </Grid>
         <Grid item xs={6} sm={6}>
         <Button
-           // type="submit"
+           // type='submit'
            onClick={()=> nextStep()}
             fullWidth
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             className={classes.submit}
             disabled={state.step > 7}
           >

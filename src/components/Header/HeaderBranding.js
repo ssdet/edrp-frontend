@@ -12,7 +12,7 @@ export default function HeaderBranding() {
     <div className='headerTitleDiv'>
     <div className='headerTitle'>
     
-    Hemavati Nandan Bahuguna Garhwal University
+    Hemvati Nandan Bahuguna Garhwal University
     
     </div>
     <div className='headerSubtitle'>
