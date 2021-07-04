@@ -1,5 +1,5 @@
 
-const GLOBAL_URL = "";
+let GLOBAL_URL = "";
 
 if(process.env.NODE_ENV === 'development') {
     GLOBAL_URL = 'http://localhost:8000/api'
