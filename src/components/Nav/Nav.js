@@ -39,8 +39,8 @@ export default function Nav() {
            </div>
          </>}
         <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
-       <Link to="/erod" style={{textDecoration: "none", color :"white"}}>
-       <div className='navLink'> <div className='navLinkText'>Evalutive Report Fill</div> </div>
+       <Link to="/faculty" style={{textDecoration: "none", color :"white"}}>
+       <div className='navLink'> <div className='navLinkText'>Faculty Profile</div> </div>
          </Link>
 
      

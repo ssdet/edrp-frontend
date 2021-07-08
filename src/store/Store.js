@@ -175,6 +175,77 @@ componentDidMount() {
       })
       },
 
+      addBtnFaculty : async (key, entry)=> {
+
+        let facultyProfile = await (await axios.get(`faculty_profile`)).data
+        console.log(facultyProfile)
+        axios.post(`${key}/`, {...entry, faculty_profile : facultyProfile.id}).then(async (res)=> {
+          entry.id = res.data.id
+          let temp = []
+
+          if(this.state.data[`${key}`]) {
+            temp = this.state.data[`${key}`]
+          }
+
+          temp.push(entry)
+          
+          this.setState({
+            data : {
+              ...this.state.data,
+              [`${key}`] : temp
+            }
+          })
+          this.props.enqueueSnackbar("Data Saved", { 
+            variant: 'default',
+        })
+          })
+        .catch((err) => {
+          this.props.enqueueSnackbar(err, { 
+            variant: 'warning',
+        })
+        })
+
+      },
+
+      removeBtnFaculty : async(key,id)=> {
+        let temp = this.state.data[`${key}`];
+        temp.pop()
+
+        let facultyProfile = await (await axios.get(`faculty_profile`)).data
+        console.log(facultyProfile)
+        axios.delete(`${key}/${id}/`,).then(async (res)=> {
+          this.setState({
+            data : {
+              ...this.state.data,
+              [`${key}`] : temp
+            }
+          })
+          this.props.enqueueSnackbar("Data Deleted", { 
+            variant: 'warning',
+        })
+          })
+        .catch((err) => {
+          this.props.enqueueSnackbar(err, { 
+            variant: 'warning',
+        })
+        })
+      },
+
+      fetchFacultyProfile : async()=> {
+        let keys = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded']
+
+        keys.map(async (key)=> {
+          let res = await (await axios.get(`${key}`)).data
+          this.setState({
+            data : {
+              ...this.state.data,
+              [`${key}`] : res
+            }
+          })
+        })
+        
+      },
+
       fetchStepData : async(critertion, step)=> {
         let res = await (await axios.get(`c${critertion}${step}`)).data
         console.log(res)

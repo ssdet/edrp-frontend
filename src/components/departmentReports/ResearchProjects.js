@@ -49,23 +49,26 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DepartmentReport() {
+export default function ResearchProjects() {
     const classes = useStyles();
     const {state, nextStep, addBtnFaculty, removeBtnFaculty} =  React.useContext(MyContext);
 
+    React.useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
 
     const handleSubmit = (e)=> {
-      e.preventDefault();
-      const formData = new FormData(e.target);
-        let data = {}
-        for (var key of formData.keys()) {
-          data[key] = formData.get([key])
-       }
-       addBtnFaculty(
-        "evaulative-report",
-          data
-      )
-  }
+        e.preventDefault();
+        const formData = new FormData(e.target);
+          let data = {}
+          for (var key of formData.keys()) {
+            data[key] = formData.get([key])
+         }
+         addBtnFaculty(
+          "research-projects",
+            data
+        )
+    }
 
     return (
         <div>
@@ -76,80 +79,70 @@ export default function DepartmentReport() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-             Evalutive Report Of The Department
+             Research Projects
             </Typography>
              <form className={classes.form} onSubmit={handleSubmit}>
                <Grid container spacing={2}>
                  <Grid item xs={12}>
                   <TextField
-                    autoComplete="name_of_author"
-                    name="name_of_author"
+                    autoComplete="title_of_project"
+                    name="title_of_project"
                     variant="outlined"
                     required
                     fullWidth
-                    id="name_of_author"
-                    label="Name Of Author"
+                    id="title_of_project"
+                    label="Title Of Project"
+                    autoFocus
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="title_of_paper"
-                    name="title_of_paper"
+                    autoComplete="principle_investigator"
+                    name="principle_investigator"
                     variant="outlined"
                     required
                     fullWidth
-                    id="title_of_paper"
-                    label="Title Of Paper"
+                    id="principle_investigator"
+                    label="Principle Investigator"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="volume"
-                    name="volume"
+                    autoComplete="duration"
+                    name="duration"
                     variant="outlined"
                     required
                     fullWidth
-                    id="volume"
-                    label="volume"
+                    id="duration"
+                    label="duration"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="page_no"
-                    name="page_no"
+                    autoComplete="funding_agency"
+                    name="funding_agency"
                     variant="outlined"
                     required
                     fullWidth
-                    id="page_no"
-                    label="Page No."
+                    id="funding_agency"
+                    label="funding agency"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="total_grant_sanctioned"
+                    name="total_grant_sanctioned"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="total_grant_sanctioned"
+                    label="total Grant Sanctioned"
                     type="number"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="title_of_journal"
-                    name="title_of_journal"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="title_of_journal"
-                    label="Title Of Journal"
+                    
                   />
                 </Grid>
             
                 <Grid item xs={12}>
-                  <TextField
-                    autoComplete="year"
-                    name="year"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="year"
-                    label="Year"
-                    type="number"
-                  />
-                </Grid>
-                <Grid item xs={12} >
                   <TextField
                     autoComplete="impact_factor"
                     name="impact_factor"
@@ -159,7 +152,7 @@ export default function DepartmentReport() {
                     id="impact_factor"
                     label="Impact Factor"
                     multiline
-                    rows={6}
+                    rows={8}
                   />
                 </Grid>
                 <Grid item xs={12} >
@@ -171,7 +164,6 @@ export default function DepartmentReport() {
                     fullWidth
                     id="issn"
                     label="ISSN"
-                    autoFocus
                   />
                 </Grid>
                </Grid>
@@ -180,7 +172,8 @@ export default function DepartmentReport() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> removeBtnFaculty("evaulative-report", state.data["evaulative-report"][state.data["evaulative-report"].length - 1].id )}
+                       onClick={()=> removeBtnFaculty("research-projects", state.data["research-projects"][state.data["research-projects"].length - 1].id )}
+
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -212,26 +205,24 @@ export default function DepartmentReport() {
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Name Of Author</TableCell>
-                        <TableCell align="right">Title Of Paper</TableCell>
-                        <TableCell>Volume</TableCell>
-                        <TableCell>Volume(Issue) Page No.</TableCell>
-                        <TableCell>Title Of Journal</TableCell>
-                        <TableCell>Year</TableCell>
+                        <TableCell>Title Of Project</TableCell>
+                        <TableCell align="right">Principle Investigator</TableCell>
+                        <TableCell>Funding Agency</TableCell>
+                        <TableCell>Total Grant Sanctioned</TableCell>
                         <TableCell>Impact Factor</TableCell>
                         <TableCell>ISSN</TableCell>
-
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {state.data["evaulative-report"] && state.data["evaulative-report"].map((row) => (
-                        <TableRow key={row.name_of_author}>
-                          <TableCell align="right">{row.name_of_author}</TableCell>
-                          <TableCell align="right">{row.title_of_paper}</TableCell>
-                          <TableCell align="right">{row.volume}</TableCell>
-                          <TableCell align="right">{row.page_no}</TableCell>
-                          <TableCell align="right">{row.title_of_journal}</TableCell>
-                          <TableCell align="right">{row.year}</TableCell>
+                      {state.data["research-projects"] && state.data["research-projects"].map((row) => (
+                        <TableRow key={row.id}>
+                          <TableCell component="th" scope="row">
+                            {row.title_of_project}
+                          </TableCell>
+                          <TableCell align="right">{row.principle_investigator}</TableCell>
+                          <TableCell align="right">{row.duration}</TableCell>
+                          <TableCell align="right">{row.funding_agency}</TableCell>
+                          <TableCell align="right">{row.total_grant_sanctioned}</TableCell>
                           <TableCell align="right">{row.impact_factor}</TableCell>
                           <TableCell align="right">{row.issn}</TableCell>
                         </TableRow>

@@ -123,7 +123,12 @@ const CheckBoxField = (props)=> {
   const [value, setValue] = React.useState("true");
 
   const handleChange = (event) => {
-    setValue(event.target.value);
+    if(field.yesNoField) {
+      setValue(event.target.value);
+    }
+    else {
+      setValue(event.target.value.toUpperCase())
+    }
   };
 
     return(
@@ -133,7 +138,7 @@ const CheckBoxField = (props)=> {
              <FormControl component="fieldset">
                   <FormLabel component="legend">{field.label}</FormLabel>
                   <RadioGroup aria-label={field.label} name={field.name}  row value={value} onChange={handleChange}>
-                      {field.options && field.options.map((option)=> (<FormControlLabel value={option.value} control={<Radio />} label={option.label} />))}
+                      {field.options && field.options.map((option)=> (<FormControlLabel value={field.yesNoField ? option.value.toString() : option.value.toUpperCase()} control={<Radio />} label={option.label} />))}
                   </RadioGroup>
                 </FormControl>
             </Grid>

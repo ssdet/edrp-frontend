@@ -49,10 +49,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DepartmentReport() {
+export default function Participations() {
     const classes = useStyles();
-    const {state, nextStep, addBtnFaculty, removeBtnFaculty} =  React.useContext(MyContext);
 
+    const {state, nextStep, addBtnFaculty, removeBtnFaculty} =  React.useContext(MyContext);
+    
+    React.useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
 
     const handleSubmit = (e)=> {
       e.preventDefault();
@@ -61,8 +65,8 @@ export default function DepartmentReport() {
         for (var key of formData.keys()) {
           data[key] = formData.get([key])
        }
-       addBtnFaculty(
-        "evaulative-report",
+      addBtnFaculty(
+        "participations",
           data
       )
   }
@@ -76,102 +80,53 @@ export default function DepartmentReport() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-             Evalutive Report Of The Department
+             Participations in Conferences, Seminars. Workshops and Training Programmes
             </Typography>
              <form className={classes.form} onSubmit={handleSubmit}>
                <Grid container spacing={2}>
                  <Grid item xs={12}>
                   <TextField
-                    autoComplete="name_of_author"
-                    name="name_of_author"
+                    autoComplete="name_of_conference"
+                    name="name_of_conference"
                     variant="outlined"
                     required
                     fullWidth
-                    id="name_of_author"
-                    label="Name Of Author"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="title_of_paper"
-                    name="title_of_paper"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="title_of_paper"
-                    label="Title Of Paper"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="volume"
-                    name="volume"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="volume"
-                    label="volume"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="page_no"
-                    name="page_no"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="page_no"
-                    label="Page No."
-                    type="number"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="title_of_journal"
-                    name="title_of_journal"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="title_of_journal"
-                    label="Title Of Journal"
-                  />
-                </Grid>
-            
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="year"
-                    name="year"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="year"
-                    label="Year"
-                    type="number"
-                  />
-                </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="impact_factor"
-                    name="impact_factor"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="impact_factor"
-                    label="Impact Factor"
-                    multiline
-                    rows={6}
-                  />
-                </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="issn"
-                    name="issn"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="issn"
-                    label="ISSN"
+                    id="name_of_conference"
+                    label="Name Of Conference"
                     autoFocus
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="topic"
+                    name="topic"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="topic"
+                    label="Topic"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="participation_mode"
+                    name="participation_mode"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="participation_mode"
+                    label="participation mode"
+                  />
+                </Grid>
+                <Grid item xs={12}>
+                  <TextField
+                    autoComplete="organizer"
+                    name="organizer"
+                    variant="outlined"
+                    required
+                    fullWidth
+                    id="organizer"
+                    label="organizer"
                   />
                 </Grid>
                </Grid>
@@ -180,7 +135,7 @@ export default function DepartmentReport() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> removeBtnFaculty("evaulative-report", state.data["evaulative-report"][state.data["evaulative-report"].length - 1].id )}
+                       onClick={()=> removeBtnFaculty("participations", state.data["participations"][state.data["participations"].length - 1].id )}
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -212,28 +167,22 @@ export default function DepartmentReport() {
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Name Of Author</TableCell>
-                        <TableCell align="right">Title Of Paper</TableCell>
-                        <TableCell>Volume</TableCell>
-                        <TableCell>Volume(Issue) Page No.</TableCell>
-                        <TableCell>Title Of Journal</TableCell>
-                        <TableCell>Year</TableCell>
-                        <TableCell>Impact Factor</TableCell>
-                        <TableCell>ISSN</TableCell>
-
+                        <TableCell>Name Of Conference</TableCell>
+                        <TableCell align="right">Topic</TableCell>
+                        <TableCell>Participantion Mode</TableCell>
+                        <TableCell>Organizer</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {state.data["evaulative-report"] && state.data["evaulative-report"].map((row) => (
-                        <TableRow key={row.name_of_author}>
-                          <TableCell align="right">{row.name_of_author}</TableCell>
-                          <TableCell align="right">{row.title_of_paper}</TableCell>
-                          <TableCell align="right">{row.volume}</TableCell>
-                          <TableCell align="right">{row.page_no}</TableCell>
-                          <TableCell align="right">{row.title_of_journal}</TableCell>
-                          <TableCell align="right">{row.year}</TableCell>
-                          <TableCell align="right">{row.impact_factor}</TableCell>
-                          <TableCell align="right">{row.issn}</TableCell>
+                      {state.data["participations"] && state.datadata["participations"].map((row) => (
+                        <TableRow key={row.id}>
+                          <TableCell component="th" scope="row">
+                            {row.name_of_conference}
+                          </TableCell>
+                          <TableCell align="right">{row.topic}</TableCell>
+                          <TableCell align="right">{row.participation_mode}</TableCell>
+                          <TableCell align="right">{row.organizer}</TableCell>
+  
                         </TableRow>
                       ))}
                     </TableBody>

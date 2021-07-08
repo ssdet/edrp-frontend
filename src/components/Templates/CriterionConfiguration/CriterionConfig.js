@@ -57,6 +57,27 @@ export const CRITERION_CONFIG = {
         },
       ]
     },
+    "31" : {
+      "step" : 4,
+      "description" : "Fields Projects/ Internships under taken during the year",
+      "fields": [
+        {
+          "name": "value_added_courses",
+          "label": "Value Added Courses",
+          "type": "text",
+        },
+        {
+          "name": "date_of_introduction",
+          "label": "Date Of Introduction",
+          "type": "date",
+        },
+        {
+          "name": "student_enrolled",
+          "label": "No Of Students Enrolled",
+          "type": "number",
+        },
+      ]
+    },
     "32" : {
       "step" : 5,
       "description" : "Value Added courses imparting transferable and life skills offered during the year",
@@ -82,27 +103,6 @@ export const CRITERION_CONFIG = {
         },
       ]
     },
-    "31" : {
-      "step" : 4,
-      "description" : "Fields Projects/ Internships under taken during the year",
-      "fields": [
-        {
-          "name": "value_added_courses",
-          "label": "Value Added Courses",
-          "type": "checkbox",
-        },
-        {
-          "name": "date_of_introduction",
-          "label": "Date Of Introduction",
-          "type": "date",
-        },
-        {
-          "name": "student_enrolled",
-          "label": "No Of Students Enrolled",
-          "type": "number",
-        },
-      ]
-    },
     "41" : {
       "step" : 5,
       "description" : "whether structured feedback recieved from all the stakeholders",
@@ -111,6 +111,7 @@ export const CRITERION_CONFIG = {
           "name": "from_students",
           "label": "From Students",
           "type": "checkbox",
+          "yesNoField" : true, 
           "options" : [
             {
               "label" : "Yes",
@@ -126,6 +127,7 @@ export const CRITERION_CONFIG = {
           "name": "from_teachers",
           "label": "From Teachers",
           "type": "checkbox",
+          "yesNoField" : true, 
           "options" : [
             {
               "label" : "Yes",
@@ -141,6 +143,7 @@ export const CRITERION_CONFIG = {
           "name": "from_employers",
           "label": "From Employers",
           "type": "checkbox",
+          "yesNoField" : true, 
           "options" : [
             {
               "label" : "Yes",
@@ -156,6 +159,7 @@ export const CRITERION_CONFIG = {
           "name": "from_alumni",
           "label": "From Alumni",
           "type": "checkbox",
+          "yesNoField" : true, 
           "options" : [
             {
               "label" : "Yes",
@@ -171,6 +175,7 @@ export const CRITERION_CONFIG = {
           "name": "from_parents",
           "label": "From Parents",
           "type": "checkbox",
+          "yesNoField" : true, 
           "options" : [
             {
               "label" : "Yes",

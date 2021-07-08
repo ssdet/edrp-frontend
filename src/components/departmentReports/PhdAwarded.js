@@ -49,11 +49,14 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DepartmentReport() {
+export default function PhdAwarded() {
     const classes = useStyles();
     const {state, nextStep, addBtnFaculty, removeBtnFaculty} =  React.useContext(MyContext);
 
-
+    React.useEffect(() => {
+      window.scrollTo(0, 0)
+    }, [])
+    
     const handleSubmit = (e)=> {
       e.preventDefault();
       const formData = new FormData(e.target);
@@ -61,11 +64,16 @@ export default function DepartmentReport() {
         for (var key of formData.keys()) {
           data[key] = formData.get([key])
        }
-       addBtnFaculty(
-        "evaulative-report",
+      addBtnFaculty(
+          'phd-awarded',
           data
       )
   }
+
+  React.useEffect(() => {
+    window.scrollTo(0, 0)
+  }, [])
+
 
     return (
         <div>
@@ -76,102 +84,78 @@ export default function DepartmentReport() {
               <LockOutlinedIcon />
             </Avatar>
             <Typography component="h1" variant="h5">
-             Evalutive Report Of The Department
+             P.hd. Awarded
             </Typography>
              <form className={classes.form} onSubmit={handleSubmit}>
                <Grid container spacing={2}>
                  <Grid item xs={12}>
                   <TextField
-                    autoComplete="name_of_author"
-                    name="name_of_author"
+                    autoComplete="subject"
+                    name="subject"
                     variant="outlined"
                     required
                     fullWidth
-                    id="name_of_author"
-                    label="Name Of Author"
+                    id="subject"
+                    label="subject"
+                    autoFocus
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="title_of_paper"
-                    name="title_of_paper"
+                    autoComplete="name_of_candidate"
+                    name="name_of_candidate"
                     variant="outlined"
                     required
                     fullWidth
-                    id="title_of_paper"
-                    label="Title Of Paper"
+                    id="name_of_candidate"
+                    label="Name of Candidate"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="volume"
-                    name="volume"
+                    autoComplete="enrollment_no"
+                    name="enrollment_no"
                     variant="outlined"
                     required
                     fullWidth
-                    id="volume"
-                    label="volume"
+                    id="enrollment_no"
+                    label="enrollment no"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="page_no"
-                    name="page_no"
+                    autoComplete="title"
+                    name="title"
                     variant="outlined"
                     required
                     fullWidth
-                    id="page_no"
-                    label="Page No."
-                    type="number"
+                    id="title"
+                    label="Title"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="title_of_journal"
-                    name="title_of_journal"
+                    autoComplete="date_of_viva_voice"
+                    name="date_of_viva_voice"
                     variant="outlined"
                     required
                     fullWidth
-                    id="title_of_journal"
-                    label="Title Of Journal"
+                    id="date_of_viva_voice"
+                    label="Date Of Viva Voice"
+                    type="date"
+                    defaultValue="2021-05-11"
                   />
                 </Grid>
             
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="year"
-                    name="year"
+                    autoComplete="supervisor"
+                    name="supervisor"
                     variant="outlined"
                     required
                     fullWidth
-                    id="year"
-                    label="Year"
-                    type="number"
-                  />
-                </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="impact_factor"
-                    name="impact_factor"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="impact_factor"
-                    label="Impact Factor"
-                    multiline
-                    rows={6}
-                  />
-                </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="issn"
-                    name="issn"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="issn"
-                    label="ISSN"
-                    autoFocus
+                    id="supervisor"
+                    label="Supervisor"
                   />
                 </Grid>
                </Grid>
@@ -180,7 +164,7 @@ export default function DepartmentReport() {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> removeBtnFaculty("evaulative-report", state.data["evaulative-report"][state.data["evaulative-report"].length - 1].id )}
+                       onClick={()=> removeBtnFaculty("phd-awarded", state.data["phd-awarded"][state.data["phd-awarded"].length - 1].id )}
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -212,28 +196,23 @@ export default function DepartmentReport() {
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Name Of Author</TableCell>
-                        <TableCell align="right">Title Of Paper</TableCell>
-                        <TableCell>Volume</TableCell>
-                        <TableCell>Volume(Issue) Page No.</TableCell>
-                        <TableCell>Title Of Journal</TableCell>
-                        <TableCell>Year</TableCell>
-                        <TableCell>Impact Factor</TableCell>
-                        <TableCell>ISSN</TableCell>
-
+                        <TableCell>subject</TableCell>
+                        <TableCell align="right">Name of Candidate</TableCell>
+                        <TableCell>enrollment no</TableCell>
+                        <TableCell>Title</TableCell>
+                        <TableCell>Date Of Viva Voice</TableCell>
+                        <TableCell>Supervisor</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {state.data["evaulative-report"] && state.data["evaulative-report"].map((row) => (
-                        <TableRow key={row.name_of_author}>
-                          <TableCell align="right">{row.name_of_author}</TableCell>
-                          <TableCell align="right">{row.title_of_paper}</TableCell>
-                          <TableCell align="right">{row.volume}</TableCell>
-                          <TableCell align="right">{row.page_no}</TableCell>
-                          <TableCell align="right">{row.title_of_journal}</TableCell>
-                          <TableCell align="right">{row.year}</TableCell>
-                          <TableCell align="right">{row.impact_factor}</TableCell>
-                          <TableCell align="right">{row.issn}</TableCell>
+                      {state.data["phd-awarded"] && state.data["phd-awarded"].map((row) => (
+                        <TableRow key={row.id}>
+                          <TableCell align="right">{row.subject}</TableCell>
+                          <TableCell align="right">{row.name_of_candidate}</TableCell>
+                          <TableCell align="right">{row.enrollment_no}</TableCell>
+                          <TableCell align="right">{row.title}</TableCell>
+                          <TableCell align="right">{row.date_of_viva_voice}</TableCell>
+                          <TableCell align="right">{row.supervisor}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>
