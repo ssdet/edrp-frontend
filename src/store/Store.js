@@ -65,21 +65,25 @@ componentDidMount() {
             token : res.data.auth_token,
           })
           localStorage.setItem('token', res.data.auth_token)
-          // window.location.href = '/'
-        })
-        .then((res2)=> {
-          axios.get('auth/users/me/').then((res3)=> {
+
+          axios.get('auth/users/me/', {
+            headers: {
+              Authorization : `Token ${res.data.auth_token}`,
+            }
+          }).then((res3)=> {
             this.setState({
               isLoggedIn : true,
               user : res3.data
+            }, ()=> {
+              window.location.href = '/'
             })
-            window.location.reload()
             console.log( res3.data)
             })
-          })
+         // window.location.href = '/'
+        })
           .catch((err)=> {
-            localStorage.removeItem('token')
-            window.location.reload()
+            // localStorage.removeItem('token')
+            // window.location.reload()
           })
     },
     aboutUser : ()=> {
