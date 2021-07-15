@@ -1,6 +1,6 @@
 import React from 'react';
 import './App.css';
-import MyProvider from './store/Store';
+
 import Header from './components/Header/Header';
 import HeaderBranding from './components/Header/HeaderBranding';
 import Nav from './components/Nav/Nav';
@@ -23,14 +23,18 @@ import FacultyProfile from './components/departmentReports/FacultyProfile';
 import CriterionTwo from './components/Criterions/CriterionTwo/CriterionTwo';
 import { Form } from './components/forms/FormElements';
 import CriterionHOC from './components/Templates/CriterionHOC';
+import AllSchools from './components/Views/AllSchools';
+import { MyContext } from './store/Store';
 
 
 
 function App() {
+  const {state, aboutUser} = React.useContext(MyContext)
 
-  return (
-    <MyProvider>
-
+  React.useEffect(()=> {
+    aboutUser()
+  },[])
+  return (<>
     <div className="App">
        <Router>
        <Header/>
@@ -38,14 +42,8 @@ function App() {
        <Nav/>
       
        <Switch>
-          <Route path="/login/director">
-            <Login type="Director"/>
-          </Route>
-          <Route path="/login/faculty">
-            <Login type="Faculty"/>
-          </Route>
-          <Route path="/login/hod">
-            <Login type="HOD"/>
+          <Route path="/login">
+            <Login type=" "/>
           </Route>
           {/* <Route path="/aqar">
            <CriterionOne/>
@@ -59,6 +57,9 @@ function App() {
           <Route path="/erod">
             <DepartmentReport/>
           </Route>
+          <Route path="/schools">
+            <AllSchools/>
+          </Route>
           <Route path="/">
           <Admissions/>
           </Route>
@@ -70,7 +71,7 @@ function App() {
     {/* <CriterionOne/> */}
     </div>
      <Footer/>
- </MyProvider>
+     </>
   );
 }
 

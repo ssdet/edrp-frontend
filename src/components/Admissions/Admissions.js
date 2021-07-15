@@ -13,6 +13,7 @@ import {
   Redirect
 } from "react-router-dom";
 import { MyContext } from '../../store/Store';
+import Landing from './Landing';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -30,11 +31,26 @@ export default function Admissions(props) {
   const {state} = React.useContext(MyContext)
    const classes = useStyles();
   if(state.isLoggedIn) {
-    return <Redirect to="/aqar"/>
+    if(state.user && state.user.type === "DEAN") {
+      window.location.href = "/schools"
+    }
+    if(state.user && state.user.type === "DIRECTOR") {
+      window.location.href = "/schools"
+    }
+
+    if(state.user && state.user.type === "HOD") {
+      window.location.href = "/aqar"
+    }
+    if(state.user && state.user.type === "FACULTY") {
+      window.location.href = "/aqar"
+    }
   }
-  return (
-   
-    <div className="Admissions">
+  else {
+    return <Landing/>
+  }
+}
+
+{/* <div className="Admissions">
     <Paper elevation={2}>
     <div className='AdmissionsDiv'>
         <div className='AdmissionsTitle'> <Typography variant="h5" component="h3">
@@ -45,7 +61,7 @@ IQAC : Internal Quality Assurance Cell
 
 <div className='PreAdmissionsSection'> 
    <div className='PreAdmissionsTitle'> <Typography variant="h5" component="h5">  
-Director / HOD Login
+Login
 </Typography></div>
 <div className='PreAdmissionsInner'>
 <div className='AdmissionsSectionUG'> 
@@ -133,7 +149,4 @@ Employee Login
     </div>
     </Paper>
      
-    </div>
-    
-  );
-}
+    </div> */}

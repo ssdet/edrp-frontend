@@ -96,11 +96,6 @@ export const CRITERION_CONFIG = {
             "rows" : "4"
           }
         },
-        {
-          "name": "student_enrolled",
-          "label": "No Of Students Enrolled",
-          "type": "number",
-        },
       ]
     },
     "41" : {

@@ -9,6 +9,7 @@ import { SnackbarProvider } from 'notistack';
 import axios from 'axios';
 import { GLOBAL_URL } from './config/Config';
 import { Slide } from '@material-ui/core';
+import MyProvider from './store/Store';
 
 axios.defaults.baseURL = GLOBAL_URL;
 if(localStorage.getItem('token')) {
@@ -21,7 +22,8 @@ axios.interceptors.request.use(request => {
     // Edit request config
     return request;
 }, error => {
-  //  console.log(error);
+    //console.log(error);
+
     return Promise.reject(error);
 });
 
@@ -30,7 +32,11 @@ axios.interceptors.response.use(response => {
     // Edit response config
     return response;
 }, error => {
-    ///console.log(error);
+    if(error.message === 'Request failed with status code 401') {
+      if(window.location.pathname !== "/")
+        window.location.href = '/'
+    }
+    console.log(JSON.stringify(error));
     return Promise.reject(error);
 });
 
@@ -71,7 +77,9 @@ ReactDOM.render(
       }}
       TransitionComponent={Slide}
       >
-        <App />
+         <MyProvider>
+          <App />
+        </MyProvider>
       </SnackbarProvider>
     </ThemeProvider>
   </React.StrictMode>,

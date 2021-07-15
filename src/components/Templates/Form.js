@@ -38,6 +38,15 @@ const useStyles = makeStyles((theme) => ({
   }
 }));
 
+const EXCLUDE_FIELDS = {
+  "id" : true,
+  "criterion" : true
+}
+
+const FIELDS_WITH_NAME = {
+  "dept" : true,
+  "programme" : true
+}
 
 const TextField = (props)=> {
   const {field} = props;
@@ -252,13 +261,12 @@ function Step(props) {
                     </TableHead>
                     <TableBody>
                       {state.data[`c${criterion}${step}`] && state.data[`c${criterion}${step}`].map((row) =>(
-                        <TableRow key={JSON.stringify(row)}>
-                            { Object.keys(row).map((key)=>(
-                            <TableCell component="th" scope="row">
-                                {row[key]}
-                          </TableCell>
-                          ) ) }
-                        </TableRow>
+                       <TableRow key={JSON.stringify(row)}>
+                      {props.fields.map((field)=> (!EXCLUDE_FIELDS[field.name] && !EXCLUDE_FIELDS[field.name] &&
+                        <TableCell component="th" scope="row">
+                            {FIELDS_WITH_NAME[field.name] ? row[field.name].name : row[field.name]}
+                      </TableCell>))}
+                   </TableRow>
                       ))}
                     </TableBody>
                   </Table>

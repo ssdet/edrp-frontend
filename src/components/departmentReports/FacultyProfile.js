@@ -5,7 +5,8 @@ import {
     Route,
     Link,
     useRouteMatch,
-    useParams
+    useParams,
+    Redirect
   } from "react-router-dom" 
 
 import { makeStyles } from '@material-ui/core/styles';
@@ -28,6 +29,9 @@ import OtherActivity from './OtherActivity';
 import PhdAwarded from './PhdAwarded';
 import ResearchProjects from './ResearchProjects';
 import { MyContext } from "../../store/Store";
+import BookReport from './BookReport';
+import DataTable from '../Views/DataTable';
+import { Typography } from '@material-ui/core';
 
 
 const useStyles = makeStyles((theme) => ({
@@ -39,7 +43,7 @@ const useStyles = makeStyles((theme) => ({
         maxWidth: "1000px",
         margin : "0 auto",
         padding : theme.spacing(1),
-        height : "700px"
+        height : "1000px"
       },
     },
     paper : {
@@ -52,11 +56,13 @@ const useStyles = makeStyles((theme) => ({
 export default function FacultyProfile() {
     const classes = useStyles();
     const {state, fetchFacultyProfile} =  React.useContext(MyContext);
+    const sections = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
+    const headerNames = ['publications', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
     const [links, setLinks] = React.useState([
         {
             link : "evaluative-report",
             image : i1,
-            label : "Evalutive Report"
+            label : "Publications"
         },
         {
             link : "events-organised",
@@ -82,6 +88,11 @@ export default function FacultyProfile() {
             link : "research-projects",
             image : i6,
             label : "Research Projects"
+        },
+        {
+            link : "book-report",
+            image : i7,
+            label : "Book Report"
         }
     ])
     let match = useRouteMatch();
@@ -90,54 +101,70 @@ export default function FacultyProfile() {
         fetchFacultyProfile()
     }, [])
 
-    return (
-        <div>
-             <Switch>
-                <Route path={`${match.path}evaluative-report`}>
-                 <DepartmentReport/>
-                </Route>
-                <Route path={`${match.path}events-organised`}>
-                 <EventsOrganized/>
-                </Route>
-                <Route path={`${match.path}other-activities`}>
-                 <OtherActivity/>
-                </Route>
-                <Route path={`${match.path}participations`}>
-                 <Participations/>
-                </Route>
-                <Route path={`${match.path}phd-awarded`}>
-                 <PhdAwarded/>
-                </Route>
-                <Route path={`${match.path}research-projects`}>
-                 <ResearchProjects/>
-                </Route>
+    if(state.isLoggedIn) {
+        if(state.user && state.user.type && state.user.type === "FACULTY") {
+            return (
+                <div>
+                     <Switch>
+                        <Route path={`${match.path}evaluative-report`}>
+                         <DepartmentReport/>
+                        </Route>
+                        <Route path={`${match.path}events-organised`}>
+                         <EventsOrganized/>
+                        </Route>
+                        <Route path={`${match.path}other-activities`}>
+                         <OtherActivity/>
+                        </Route>
+                        <Route path={`${match.path}participations`}>
+                         <Participations/>
+                        </Route>
+                        <Route path={`${match.path}phd-awarded`}>
+                         <PhdAwarded/>
+                        </Route>
+                        <Route path={`${match.path}research-projects`}>
+                         <ResearchProjects/>
+                        </Route>
+                        <Route path={`${match.path}book-report`}>
+                         <BookReport/>
+                        </Route>
 
-                <Route path={match.path}>
-                <div className={classes.root}>
-                    <Grid container>
-                        {links.map((link)=> (
-                        <Grid item xs={6}>
-                            <Paper variant="outlined" className={classes.paper}>
-                                <Grid container  justifyContent="center"
-                                    alignItems="center">
-                                        <Grid item={6} xs={12} sm={6} style={{}}>
-                                            <img src={link.image} style={{width : 'auto', height : '100px'}}/>
+                        <Route path={match.path}>
+                        <div className={classes.root}>
+                            <Grid container>
+                                {links.map((link)=> (
+                                <Grid item xs={6}>
+                                    <Paper variant="outlined" className={classes.paper}>
+                                        <Grid container  justifyContent="center"
+                                            alignItems="center">
+                                                <Grid item={6} xs={12} sm={6} style={{}}>
+                                                    <img src={link.image} style={{width : 'auto', height : '100px'}}/>
+                                                </Grid>
+                                                <Grid item sm={6} style={{margin : "0 auto",}} xs={12}>
+                                                    <Link to={`${match.path}${link.link}`} style={{textDecoration: 'none',}}>
+                                                    <Button variant="contained" color="primary" disableRipple disableElevation disableFocusRipple >{link.label}</Button>
+                                                    </Link> 
+                                                </Grid>
                                         </Grid>
-                                        <Grid item sm={6} style={{margin : "0 auto",}} xs={12}>
-                                            <Link to={`${match.path}${link.link}`} style={{textDecoration: 'none',}}>
-                                            <Button variant="contained" color="primary" disableRipple disableElevation disableFocusRipple >{link.label}</Button>
-                                            </Link> 
-                                        </Grid>
-                                </Grid>
-                            </Paper>   
-                        </Grid>  
-                        ))}                  
-                    </Grid>
-                </div>
-                </Route>
+                                    </Paper>   
+                                </Grid>  
+                                ))}                  
+                            </Grid>
+                        </div>
+                        </Route>
                
 
-              </Switch>
-        </div>
-    )
+                      </Switch>
+                </div>
+            )
+        }
+        if(state.user && state.user.type && state.user.type === "HOD") {
+           return(<div style={{margin : "70px"}}>
+           <center> <Typography component="h6" variant="h5">FACULTY PROFILE REPORT</Typography></center>
+            {sections.map((key,i)=> state.data[key] && <DataTable rows={state.data[key]} tableName={headerNames[i]} /> )}
+           </div>)
+        }
+    }
+    else {
+        return <Redirect to="/login"/>
+    }
 }

@@ -142,7 +142,7 @@ export default function ResearchProjects() {
                   />
                 </Grid>
             
-                <Grid item xs={12}>
+                {/* <Grid item xs={12}>
                   <TextField
                     autoComplete="impact_factor"
                     name="impact_factor"
@@ -165,7 +165,7 @@ export default function ResearchProjects() {
                     id="issn"
                     label="ISSN"
                   />
-                </Grid>
+                </Grid> */}
                </Grid>
             
               <Grid container spacing={2}>
@@ -207,24 +207,21 @@ export default function ResearchProjects() {
                       <TableRow>
                         <TableCell>Title Of Project</TableCell>
                         <TableCell align="right">Principle Investigator</TableCell>
+                        <TableCell>Duration</TableCell>
                         <TableCell>Funding Agency</TableCell>
                         <TableCell>Total Grant Sanctioned</TableCell>
-                        <TableCell>Impact Factor</TableCell>
-                        <TableCell>ISSN</TableCell>
                       </TableRow>
                     </TableHead>
                     <TableBody>
                       {state.data["research-projects"] && state.data["research-projects"].map((row) => (
                         <TableRow key={row.id}>
-                          <TableCell component="th" scope="row">
+                          <TableCell>
                             {row.title_of_project}
                           </TableCell>
                           <TableCell align="right">{row.principle_investigator}</TableCell>
                           <TableCell align="right">{row.duration}</TableCell>
                           <TableCell align="right">{row.funding_agency}</TableCell>
                           <TableCell align="right">{row.total_grant_sanctioned}</TableCell>
-                          <TableCell align="right">{row.impact_factor}</TableCell>
-                          <TableCell align="right">{row.issn}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

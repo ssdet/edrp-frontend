@@ -1,17 +1,10 @@
 import axios from 'axios';
 import React from 'react';
-import {GLOBAL_URL} from '../config/Config.js';
 import { withSnackbar } from 'notistack';
+import { CRITERION_CONFIG } from '../components/Templates/CriterionConfiguration/CriterionConfig';
 
 const MyContext = React.createContext();
 
-
-const serverRequest = async(params)=> {
-      return await fetch(GLOBAL_URL + params).then((response)=>{
-        return response;
-      }) 
-
-}
 
 const CRITERION_STR_MAP = {
   1 : "criterionone",
@@ -43,7 +36,7 @@ class MyProvider extends React.Component {
       "Whether Structured feedback recieved from all the stakeholders"
     ],
     data : {},
-    user : {}
+    user : localStorage.getItem('iqac_user') ? JSON.parse(localStorage.getItem('iqac_user')) : {}
 
   }
 }
@@ -58,10 +51,10 @@ componentDidMount() {
         state: this.state,
 
       loginUser : (data) => {
-        this.setState({
-          token : "",
-          isLoggedIn : true
-        })
+        // this.setState({
+        //   token : "",
+        //   isLoggedIn : true,
+        // })
         //localStorage.setItem('token', "res.data.auth_token")
         axios.post('auth/token/login/', {
           email : data.username,
@@ -70,13 +63,14 @@ componentDidMount() {
           console.log(res)
           this.setState({
             token : res.data.auth_token,
-            isLoggedIn : true
           })
           localStorage.setItem('token', res.data.auth_token)
+          // window.location.href = '/'
         })
         .then((res2)=> {
           axios.get('auth/users/me/').then((res3)=> {
             this.setState({
+              isLoggedIn : true,
               user : res3.data
             })
             window.location.reload()
@@ -93,6 +87,7 @@ componentDidMount() {
         this.setState({
           user : res3.data
         })
+        localStorage.setItem('iqac_user', JSON.stringify(res3.data))
         console.log( res3.data)
         })
     },
@@ -104,6 +99,7 @@ componentDidMount() {
            isLoggedIn : false
          })
          localStorage.removeItem('token')
+         localStorage.removeItem('iqac_user')
          window.location.reload();
         })
       },
@@ -232,8 +228,7 @@ componentDidMount() {
       },
 
       fetchFacultyProfile : async()=> {
-        let keys = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded']
-
+        let keys = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
         keys.map(async (key)=> {
           let res = await (await axios.get(`${key}`)).data
           this.setState({
@@ -246,6 +241,62 @@ componentDidMount() {
         
       },
 
+      fetchAllStepsData : async()=> {
+        let arr2 = ["c111", "c112", "c121", "c131", "c132", "c141", "c142", "c211", "c221", "c231", "c232", "c233", "c241", "c242", "c261", "c311", "c312", "c321", "c331", "c332", "c333", "c341", "c342", "c343", "c344", "c345", "c346", "c347", "c351", "c352", "c361", "c362", "c363", "c371", "c372", "c373", "c412", "c422", "c431", "c432", "c433", "c511", "c512", "c513", "c514", "c521", "c522", "c523", "c524", "c531", "c541", "c542", "c543", "c544", "c621", "c631", "c632", "c633", "c711", "c712", "c714", "c716", "c717", "c721", "c731", "c741", "c781", "c791"]
+        let ct = {}
+        let extras = ["id", "dept"]
+        Object.keys(CRITERION_CONFIG).map((key_)=>{
+          ct[key_] = []
+          {Object.keys(CRITERION_CONFIG[key_]).map( (key,i) => {
+            ct[key_].push(`c${key_}${key}_set`)
+          })
+        }
+        extras.map((option)=> ct[key_].push(option))
+        })
+
+        console.log(ct)
+        this.setState({
+          allStepsLoading : true
+        })
+        let arr = ['criterionone_detail', 'criteriontwo_detail', 'criterionthree_detail', 'criterionfour_detail', 'criterionfive_detail', 'criterionsix_detail', 'criterionseven_detail']
+        await arr.map( async (step)=> {
+
+          let res = await (await axios.get(`${step}`))
+          if(res.data) {
+            res.data.map((individual_item)=> {
+              Object.keys(individual_item).map((step)=> {
+                if(step.includes("_set")) {
+                  let newKey = step.replace("_set", "")
+                  let data = this.state.data[newKey] ? this.state.data[newKey].concat(individual_item[step]) : individual_item[step]
+                  this.setState({
+                    data : {
+                      ...this.state.data,
+                      [newKey] : data,
+                      [`${newKey}loading`] : false
+                    }
+                  })
+                }
+                else {
+                  this.setState({
+                    data : {
+                      ...this.state.data,
+                      [step] :individual_item[step],
+                      [`${step}loading`] : false
+                    }
+                  })
+                }
+              })
+            })
+
+          } 
+        })
+
+        this.setState({
+          allStepsLoading : false
+        })
+        console.log(arr)
+      },
+
       fetchStepData : async(critertion, step)=> {
         let res = await (await axios.get(`c${critertion}${step}`)).data
         console.log(res)
@@ -256,7 +307,14 @@ componentDidMount() {
         //   }
         // })
 
-      }
+      },
+
+      fetchAllSchools: async()=> {
+        let res = await (await axios.get(`school`)).data
+        this.setState({
+          schools: res
+        })
+      },
       }}
       	>
         {this.props.children}

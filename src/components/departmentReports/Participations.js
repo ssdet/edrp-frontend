@@ -174,7 +174,7 @@ export default function Participations() {
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {state.data["participations"] && state.datadata["participations"].map((row) => (
+                      {state.data["participations"] && state.data["participations"].map((row) => (
                         <TableRow key={row.id}>
                           <TableCell component="th" scope="row">
                             {row.name_of_conference}

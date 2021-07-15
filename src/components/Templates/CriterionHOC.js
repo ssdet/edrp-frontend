@@ -27,7 +27,7 @@ export default function CriterionHOC() {
         store.goToStep(0)
     }
     React.useEffect(()=> {
-        store.fetchStepData(1,11)
+        store.fetchAllStepsData()
     }, [])
     return (
         <div style={{"marginTop" : "15px", marginLeft : "15px", marginBottom : "15px", maxWidth : "97%"}}>

@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DepartmentReport() {
+export default function BookReport() {
     const classes = useStyles();
     const {state, nextStep, addBtnFaculty, removeBtnFaculty} =  React.useContext(MyContext);
 
@@ -62,7 +62,7 @@ export default function DepartmentReport() {
           data[key] = formData.get([key])
        }
        addBtnFaculty(
-        "evaulative-report",
+        "book",
           data
       )
   }
@@ -82,105 +82,67 @@ export default function DepartmentReport() {
                <Grid container spacing={2}>
                  <Grid item xs={12}>
                   <TextField
-                    autoComplete="name_of_author"
-                    name="name_of_author"
+                    autoComplete="book_or_book_chapter"
+                    name="book_or_book_chapter"
                     variant="outlined"
                     required
                     fullWidth
-                    id="name_of_author"
-                    label="Name Of Author"
+                    id="book_or_book_chapter"
+                    label="Book/Book chapter"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="title_of_paper"
-                    name="title_of_paper"
+                    autoComplete="author"
+                    name="author"
                     variant="outlined"
                     required
                     fullWidth
-                    id="title_of_paper"
-                    label="Title Of Paper"
+                    id="author"
+                    label="Author"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="volume"
-                    name="volume"
+                    autoComplete="year_of_publication"
+                    name="year_of_publication"
                     variant="outlined"
                     required
                     fullWidth
-                    id="volume"
-                    label="volume"
-                  />
-                </Grid>
-                <Grid item xs={12}>
-                  <TextField
-                    autoComplete="page_no"
-                    name="page_no"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="page_no"
-                    label="Page No."
+                    id="year_of_publication"
+                    label="Year of publication"
                     type="number"
                   />
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="title_of_journal"
-                    name="title_of_journal"
+                    autoComplete="publisher"
+                    name="publisher"
                     variant="outlined"
                     required
                     fullWidth
-                    id="title_of_journal"
-                    label="Title Of Journal"
+                    id="publisher"
+                    label="Publisher"
                   />
                 </Grid>
-            
                 <Grid item xs={12}>
                   <TextField
-                    autoComplete="year"
-                    name="year"
+                    autoComplete="isbn"
+                    name="isbn"
                     variant="outlined"
                     required
                     fullWidth
-                    id="year"
-                    label="Year"
-                    type="number"
+                    id="isbn"
+                    label="ISBN"
                   />
-                </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="impact_factor"
-                    name="impact_factor"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="impact_factor"
-                    label="Impact Factor"
-                    multiline
-                    rows={6}
-                  />
-                </Grid>
-                <Grid item xs={12} >
-                  <TextField
-                    autoComplete="issn"
-                    name="issn"
-                    variant="outlined"
-                    required
-                    fullWidth
-                    id="issn"
-                    label="ISSN"
-                    autoFocus
-                  />
-                </Grid>
+                </Grid>       
                </Grid>
             
               <Grid container spacing={2}>
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> removeBtnFaculty("evaulative-report", state.data["evaulative-report"][state.data["evaulative-report"].length - 1].id )}
+                       onClick={()=> removeBtnFaculty("book", state.data["book"][state.data["book"].length - 1].id )}
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -212,28 +174,20 @@ export default function DepartmentReport() {
                   <Table className={classes.table} aria-label="simple table">
                     <TableHead>
                       <TableRow>
-                        <TableCell>Name Of Author</TableCell>
-                        <TableCell align="right">Title Of Paper</TableCell>
-                        <TableCell>Volume</TableCell>
-                        <TableCell>Volume(Issue) Page No.</TableCell>
-                        <TableCell>Title Of Journal</TableCell>
-                        <TableCell>Year</TableCell>
-                        <TableCell>Impact Factor</TableCell>
-                        <TableCell>ISSN</TableCell>
-
-                      </TableRow>
+                        <TableCell>Book/ Book Chapter</TableCell>
+                        <TableCell align="right">Author</TableCell>
+                        <TableCell>Year Of Publicaiton</TableCell>
+                        <TableCell>Publisher</TableCell>
+                        <TableCell>ISBN</TableCell>
+                  </TableRow>
                     </TableHead>
                     <TableBody>
-                      {state.data["evaulative-report"] && state.data["evaulative-report"].map((row) => (
-                        <TableRow key={row.name_of_author}>
-                          <TableCell align="right">{row.name_of_author}</TableCell>
-                          <TableCell align="right">{row.title_of_paper}</TableCell>
-                          <TableCell align="right">{row.volume}</TableCell>
-                          <TableCell align="right">{row.page_no}</TableCell>
-                          <TableCell align="right">{row.title_of_journal}</TableCell>
-                          <TableCell align="right">{row.year}</TableCell>
-                          <TableCell align="right">{row.impact_factor}</TableCell>
-                          <TableCell align="right">{row.issn}</TableCell>
+                      {state.data["book"] && state.data["book"].map((row) => (
+                        <TableRow key={row.book_or_book_chapter}>
+                          <TableCell align="right">{row.author}</TableCell>
+                          <TableCell align="right">{row.year_of_publication}</TableCell>
+                          <TableCell align="right">{row.publisher}</TableCell>
+                          <TableCell align="right">{row.isbn}</TableCell>
                         </TableRow>
                       ))}
                     </TableBody>

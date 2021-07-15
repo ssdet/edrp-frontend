@@ -91,6 +91,8 @@ const SHOW_TO_FAC_MAP = {
   "6.3.2" : true
 }
 
+
+
 export default function Criterion(props) {
   const classes = useStyles();
 
