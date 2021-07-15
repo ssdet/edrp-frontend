@@ -33,16 +33,21 @@ export default function Admissions(props) {
   if(state.isLoggedIn) {
     if(state.user && state.user.type === "DEAN") {
       window.location.href = "/schools"
+      return <></>
+      
     }
     if(state.user && state.user.type === "DIRECTOR") {
       window.location.href = "/schools"
+      return <></>
     }
 
     if(state.user && state.user.type === "HOD") {
       window.location.href = "/aqar"
+      return <></>
     }
     if(state.user && state.user.type === "FACULTY") {
       window.location.href = "/aqar"
+      return <></>
     }
   }
   else {

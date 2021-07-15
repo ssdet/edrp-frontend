@@ -34,7 +34,7 @@ axios.interceptors.response.use(response => {
 }, error => {
     if(error.message === 'Request failed with status code 401') {
       if(window.location.pathname !== "/")
-        window.location.href = '/'
+        window.location.href = '/login'
     }
     console.log(JSON.stringify(error));
     return Promise.reject(error);

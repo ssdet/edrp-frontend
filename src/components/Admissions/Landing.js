@@ -74,6 +74,7 @@ export default function Landing() {
 
   if(state.isLoggedIn) {
     window.location.href = "/"
+    return <></>
   }
   return (
     <React.Fragment>
