@@ -15,6 +15,12 @@ axios.defaults.baseURL = GLOBAL_URL;
 if(localStorage.getItem('token')) {
   axios.defaults.headers.common['Authorization'] = `Token ${localStorage.getItem('token')}`;
 }
+else {
+  if(window.location.pathname !== "/") {
+    window.location.href = '/'
+  }
+}
+
 axios.defaults.headers.post['Content-Type'] = 'application/json';
 
 axios.interceptors.request.use(request => {
@@ -34,8 +40,6 @@ axios.interceptors.response.use(response => {
 }, error => {
     if(error.message === 'Request failed with status code 401') {
       localStorage.clear()
-      if(window.location.pathname !== "/")
-        window.location.href = '/'
     }
     console.log(JSON.stringify(error));
     return Promise.reject(error);

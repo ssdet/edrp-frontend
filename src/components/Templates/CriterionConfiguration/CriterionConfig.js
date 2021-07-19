@@ -391,7 +391,7 @@ export const CRITERION_CONFIG = {
         {
           "name": "name_of_full_time_teacher",
           "label": `Name of full time teachers receiving awards from state level, national level, international level`,
-          "type": "number",
+          "type": "text",
         },
         {
           "name": "designation",

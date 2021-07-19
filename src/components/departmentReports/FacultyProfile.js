@@ -160,7 +160,7 @@ export default function FacultyProfile() {
         if(state.user && state.user.type && state.user.type === "HOD") {
            return(<div style={{margin : "70px"}}>
            <center> <Typography component="h6" variant="h5">FACULTY PROFILE REPORT</Typography></center>
-            {sections.map((key,i)=> state.data[key] && <DataTable rows={state.data[key]} tableName={headerNames[i]} /> )}
+            {sections.map((key,i)=> state.data[key] && <DataTable rows={state.data[key]} tableName={headerNames[i]} department={0}/> )}
            </div>)
         }
     }

@@ -71,6 +71,9 @@ componentDidMount() {
               Authorization : `Token ${res.data.auth_token}`,
             }
           }).then((res3)=> {
+            this.props.enqueueSnackbar("Logged In", { 
+              variant: 'default',
+          })
             this.setState({
               isLoggedIn : true,
               user : res3.data
@@ -82,6 +85,12 @@ componentDidMount() {
          // window.location.href = '/'
         })
           .catch((err)=> {
+            if(err.message === 'Request failed with status code 400') {
+              this.props.enqueueSnackbar('Wrong Email Or Password', { 
+                variant: 'error',
+            })
+            }
+
             // localStorage.removeItem('token')
             // window.location.reload()
           })
@@ -154,7 +163,7 @@ componentDidMount() {
         })
           })
         .catch((err) => {
-          this.props.enqueueSnackbar(err, { 
+            this.props.enqueueSnackbar(err.message, { 
             variant: 'warning',
         })
         })
@@ -200,7 +209,7 @@ componentDidMount() {
         })
           })
         .catch((err) => {
-          this.props.enqueueSnackbar(err, { 
+                      this.props.enqueueSnackbar(err.message, { 
             variant: 'warning',
         })
         })
@@ -225,7 +234,7 @@ componentDidMount() {
         })
           })
         .catch((err) => {
-          this.props.enqueueSnackbar(err, { 
+            this.props.enqueueSnackbar(err.message, { 
             variant: 'warning',
         })
         })

@@ -73,23 +73,7 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const SHOW_TO_FAC_MAP = {
-  "2.4.2" : true,
-  "3.1.1" : true,
-  "3.2.1" : true,
-  "3.3.1" : true,
-  "3.3.3" : true,
-  "3.4.1" : true,
-  "3.4.2" : true,
-  "3.4.4" : true,
-  "3.4.5" : true,
-  "3.4.6" : true,
-  "3.4.7" : true,
-  "3.5.1" : true,
-  "3.5.2" : true,
-  "6.3.1" : true,
-  "6.3.2" : true
-}
+
 
 
 
@@ -104,6 +88,7 @@ export default function Criterion(props) {
     let steps = step.split("")
     return `${criterion}.${steps[0]}.${steps[1]}`
   }
+
   React.useEffect(()=> {
     aboutUser()
   },[])
@@ -121,9 +106,6 @@ export default function Criterion(props) {
         <Typography component='h1' variant='h5' align='center' style={{marginTop : "10px"}}>
         <center> {`Criterion ${props.criterionId} : ${props.criterionDescription}`}</center>
         </Typography>
-        <Typography variant='body1' align='center' style={{marginTop : "10px"}}>
-        {/* {props.criterion[`${props.criterionId}${state.step}`].description} */}
-      </Typography>
       <div style={{'position': 'absolute', width : '100%', marginTop : '-50px'}}>
       <Tabs 
           value={state.step-1} 
@@ -143,6 +125,9 @@ export default function Criterion(props) {
       </div>
   {Object.keys(props.criterion).map( (key,i) => (
     <TabPanel value={state.step-1} index={i}>
+        <Typography variant='body1' align='center' style={{marginTop : "10px", textTransform : 'capitalize'}}>
+          {props.criterion[key].description}
+        </Typography>
         <Step criterion={props.criterionId} step={key} fields={props.criterion[key].fields} />
     </TabPanel>
   ) ) }
