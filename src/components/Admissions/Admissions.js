@@ -31,7 +31,11 @@ export default function Admissions(props) {
   const {state} = React.useContext(MyContext)
    const classes = useStyles();
   if(state.isLoggedIn) {
-    if(state.user && state.user.type === "DEAN") {
+    if(state.user && state.user.first_time) {
+      window.location.href = "/reset-password"
+      return <></>
+    }
+     if(state.user && state.user.type === "DEAN") {
       window.location.href = "/schools"
       return <></>
       

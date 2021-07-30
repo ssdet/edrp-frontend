@@ -31,6 +31,10 @@ export default function Nav() {
              window.location.reload()
            }}>Logout</Link></div>
            </div>
+           <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
+           <div className='navLink'><div className='navLinkText'>  
+           <Link to="/reset-password" style={{textDecoration: "none", color : "white"}}>Reset Password</Link></div>
+           </div>
          </>}
          {state.isLoggedIn && state.user && state.user.type && (state.user.type === "DEAN" || state.user.type === "DIRECTOR") &&<>
           <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>

@@ -25,6 +25,7 @@ import { Form } from './components/forms/FormElements';
 import CriterionHOC from './components/Templates/CriterionHOC';
 import AllSchools from './components/Views/AllSchools';
 import { MyContext } from './store/Store';
+import ResetPassword from './components/ResetPassword/ResetPassword';
 
 
 
@@ -44,6 +45,10 @@ function App() {
        <Switch>
           <Route path="/login">
             <Login type=" "/>
+          </Route>
+
+          <Route path="/reset-password">
+            <ResetPassword/>
           </Route>
           {/* <Route path="/aqar">
            <CriterionOne/>

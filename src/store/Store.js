@@ -95,6 +95,18 @@ componentDidMount() {
             // window.location.reload()
           })
     },
+    resetPassword : async (e) => {
+      axios.post('reset_password/', new FormData(e.target)).then((response)=> {
+        this.props.enqueueSnackbar("Password Updated", { 
+          variant: 'default',
+      })
+        localStorage.clear()
+        window.location.href = '/logout'
+      })
+      .catch((err)=> {
+
+      })
+    },
     aboutUser : ()=> {
       axios.get('auth/users/me/').then((res3)=> {
         this.setState({
