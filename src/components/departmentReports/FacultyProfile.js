@@ -30,6 +30,7 @@ import PhdAwarded from './PhdAwarded';
 import ResearchProjects from './ResearchProjects';
 import { MyContext } from "../../store/Store";
 import BookReport from './BookReport';
+import BioData from './BioData';
 import DataTable from '../Views/DataTable';
 import { Typography } from '@material-ui/core';
 
@@ -56,8 +57,8 @@ const useStyles = makeStyles((theme) => ({
 export default function FacultyProfile() {
     const classes = useStyles();
     const {state, fetchFacultyProfile} =  React.useContext(MyContext);
-    const sections = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
-    const headerNames = ['publications', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
+    const sections = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book','biodata']
+    const headerNames = ['publications', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book','biodata']
     const [links, setLinks] = React.useState([
         {
             link : "evaluative-report",
@@ -93,6 +94,12 @@ export default function FacultyProfile() {
             link : "book-report",
             image : i7,
             label : "Book Report"
+        },
+
+        {
+            link : "biodata",
+            image : i8,
+            label : "Biodata"
         }
     ])
     let match = useRouteMatch();
@@ -126,6 +133,9 @@ export default function FacultyProfile() {
                         </Route>
                         <Route path={`${match.path}book-report`}>
                          <BookReport/>
+                        </Route>
+                        <Route path={`${match.path}biodata`}>
+                         <BioData/>
                         </Route>
 
                         <Route path={match.path}>

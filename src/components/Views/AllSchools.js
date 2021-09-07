@@ -229,8 +229,8 @@ export const DepartmentDetail = (props)=> {
         }
         axios.get('department').then((res)=> {setOptions(res.data)})
     }, [])
-    const sections = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
-    const headerNames = ['publications', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
+    const sections = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book', 'biodata']
+    const headerNames = ['publications', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book', 'biodata']
     let match = useRouteMatch();
     React.useEffect(()=>{
         fetchFacultyProfile()

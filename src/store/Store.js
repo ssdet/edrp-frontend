@@ -196,6 +196,37 @@ componentDidMount() {
       })
       },
 
+      submitForm : async (key, data)=> {
+        let temp = []
+        if(this.state.data[`${key}`]) {
+          temp = this.state.data[`${key}`]
+        }
+
+        axios.post(`${key}/`, new FormData(data)).then(async (res)=> {
+
+          await axios.get(`${key}/`).then(async (res)=> {
+            this.setState({
+              [`${key}`] : res.data
+            })
+          })
+        this.props.enqueueSnackbar("Data Saved", { 
+        variant: 'default',
+ })
+})
+.catch((err) => {
+this.props.enqueueSnackbar(err.message, { 
+variant: 'warning',
+})
+})
+
+},
+
+
+
+
+
+
+
       addBtnFaculty : async (key, entry)=> {
 
         let facultyProfile = await (await axios.get(`faculty_profile`)).data
@@ -253,7 +284,7 @@ componentDidMount() {
       },
 
       fetchFacultyProfile : async()=> {
-        let keys = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
+        let keys = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book', 'biodata']
         keys.map(async (key)=> {
           let res = await (await axios.get(`${key}`)).data
           this.setState({
