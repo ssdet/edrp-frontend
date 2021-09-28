@@ -10,29 +10,9 @@ import {
   } from "react-router-dom" 
 
 import { makeStyles } from '@material-ui/core/styles';
-import Paper from '@material-ui/core/Paper';
-import Button from '@material-ui/core/Button';
-import Grid from '@material-ui/core/Grid';
-
-import i1 from "./assets/1.svg";
-import i2 from "./assets/2.svg";
-import i3 from "./assets/3.svg";
-import i4 from "./assets/4.svg";
-import i5 from "./assets/5.svg";
-import i6 from "./assets/6.svg";
-import i7 from "./assets/7.svg";
-import i8 from "./assets/8.svg";
-import DepartmentReport from './DepartmentReport';
-import EventsOrganized from './EventsOrganized';
-import Participations from './Participations';
-import OtherActivity from './OtherActivity';
-import PhdAwarded from './PhdAwarded';
-import ResearchProjects from './ResearchProjects';
 import { MyContext } from "../../store/Store";
-import BookReport from './BookReport';
-import DataTable from '../Views/DataTable';
 import { Typography } from '@material-ui/core';
-import AllSchools, { DepartmentDetail } from '../Views/AllSchools';
+import AllSchools from '../Views/AllSchools';
 import DepartmentProfileTableHOC from '../Views/DepartmentProfileTableHOC';
 
 

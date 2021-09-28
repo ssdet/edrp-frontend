@@ -254,7 +254,7 @@ componentDidMount() {
       },
 
       fetchFacultyProfile : async()=> {
-        let keys = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
+        let keys = ['evaulative-report', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book', 'biodata']
         keys.map(async (key)=> {
           let res = await (await axios.get(`${key}`)).data
           this.setState({
