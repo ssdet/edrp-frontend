@@ -26,6 +26,7 @@ import CriterionHOC from './components/Templates/CriterionHOC';
 import AllSchools from './components/Views/AllSchools';
 import { MyContext } from './store/Store';
 import ResetPassword from './components/ResetPassword/ResetPassword';
+import FacultyProfileHOC from './components/Templates/FacultyProfileHOC';
 
 
 
@@ -56,8 +57,11 @@ function App() {
           <Route path="/aqar">
            <CriterionHOC/>
           </Route>
-          <Route path="/faculty/">
-            <FacultyProfile/>
+          <Route path="/entity-entry">
+           <FacultyProfileHOC/>
+          </Route>
+          <Route path="/entity-report/">
+           <FacultyProfile/>
           </Route>
           <Route path="/erod">
             <DepartmentReport/>

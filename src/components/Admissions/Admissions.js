@@ -35,21 +35,25 @@ export default function Admissions(props) {
       window.location.href = "/reset-password"
       return <></>
     }
-     if(state.user && state.user.type === "DEAN") {
+     else if(state.user && state.user.type === "DEAN") {
       window.location.href = "/schools"
       return <></>
       
     }
-    if(state.user && state.user.type === "DIRECTOR") {
+    else if(state.user && state.user.type === "DIRECTOR") {
       window.location.href = "/schools"
       return <></>
     }
 
-    if(state.user && state.user.type === "HOD") {
+    else if(state.user && state.user.type === "HOD") {
       window.location.href = "/aqar"
       return <></>
     }
-    if(state.user && state.user.type === "FACULTY") {
+    else if(state.user && state.user.type === "FACULTY") {
+      window.location.href = "/aqar"
+      return <></>
+    }
+    else {
       window.location.href = "/aqar"
       return <></>
     }

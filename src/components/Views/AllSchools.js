@@ -33,6 +33,7 @@ import MenuItem from '@material-ui/core/MenuItem';
 import FormHelperText from '@material-ui/core/FormHelperText';
 import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
+import DepartmentProfileTableHOC from './DepartmentProfileTableHOC';
 
 
 
@@ -233,7 +234,7 @@ export const DepartmentDetail = (props)=> {
     const headerNames = ['publications', 'research-projects', 'participations', 'events-organised', 'other-activity', 'phd-awarded', 'book']
     let match = useRouteMatch();
     React.useEffect(()=>{
-        fetchFacultyProfile()
+       // fetchFacultyProfile()
         if(props.location.query && props.location.query.dept) {
             setDepartment(props.location.query.dept)
         } 
@@ -258,28 +259,12 @@ export const DepartmentDetail = (props)=> {
         <div>
         <Switch>
            <Route path={match.path}>
-               <div classes={classesPanel.root}>
-
-               </div>
                 <Tabs value={value} centered onChange={handleChange} aria-label="simple tabs example">
                   <Tab label="Faculty Data" {...a11yProps(0)} />
                   <Tab label="IQAC Data" {...a11yProps(1)} />
                 </Tabs>
               <TabPanel value={value} index={0}>
-              <FormControl className={classes.formControl}>
-                    <InputLabel id="demo-simple-select-label">Department</InputLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="demo-simple-select"
-                      value={allowedDepartment}
-                      onChange={handleDeptChange}
-                    >
-                      <MenuItem value={0}>All</MenuItem>
-                      {options.map((option)=> <MenuItem value={option.id}>{option.name}</MenuItem>)}
-                  
-                    </Select>
-                  </FormControl>
-                  {sections.map((key,i)=> state.data[key] && <DataTable rows={state.data[key]} tableName={headerNames[i]} department={allowedDepartment}/> )}
+                <DepartmentProfileTableHOC/>
               </TabPanel>
               <TabPanel value={value} index={1}>
                 <CriterionTableHOC/>

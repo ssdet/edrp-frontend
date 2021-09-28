@@ -42,16 +42,35 @@ export default function Nav() {
            <Link to="/schools" style={{textDecoration: "none", color : "white"}}>Data Report Module</Link></div>
            </div>
          </>}
-         {state.isLoggedIn && state.user && state.user.type && (state.user.type === "FACULTY" || state.user.type === "HOD") && <> 
+         {state.isLoggedIn && state.user && state.user.type && (state.user.type === "FACULTY") && <> 
           <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
-           <Link to="/faculty" style={{textDecoration: "none", color :"white"}}>
+           <Link to="/entity-report" style={{textDecoration: "none", color :"white"}}>
            <div className='navLink'> <div className='navLinkText'>Faculty Profile</div> </div>
+             </Link>
+             <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
+             <Link to="/entity-entry" style={{textDecoration: "none", color :"white"}}>
+           <div className='navLink'> <div className='navLinkText'>Faculty Profile Edit</div> </div>
              </Link>
              <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
            <Link to="/aqar" style={{textDecoration: "none", color :"white"}}>
            <div className='navLink'> <div className='navLinkText'>AQAR</div> </div>
              </Link>
          </>}
+
+         {state.isLoggedIn && state.user && state.user.type && (state.user.type === "HOD") && <> 
+        <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
+         <Link to="/entity-report" style={{textDecoration: "none", color :"white"}}>
+         <div className='navLink'> <div className='navLinkText'>Department Profile</div> </div>
+           </Link>
+           <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
+           <Link to="/entity-entry" style={{textDecoration: "none", color :"white"}}>
+         <div className='navLink'> <div className='navLinkText'>Department Profile Edit</div> </div>
+           </Link>
+           <Divider orientation="vertical" flexItem style={{background : 'white', width : '1px', transform:'scaleX(0.5)'}}/>
+         <Link to="/aqar" style={{textDecoration: "none", color :"white"}}>
+         <div className='navLink'> <div className='navLinkText'>AQAR</div> </div>
+           </Link>
+       </>}
 
      
       

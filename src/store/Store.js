@@ -2,6 +2,7 @@ import axios from 'axios';
 import React from 'react';
 import { withSnackbar } from 'notistack';
 import { CRITERION_CONFIG } from '../components/Templates/CriterionConfiguration/CriterionConfig';
+import { FACULTY_PROFILE_CONFIG } from '../components/Templates/FacultyProfileConfigurations/FacultyProfileConfiguration';
 
 const MyContext = React.createContext();
 
@@ -196,16 +197,16 @@ componentDidMount() {
       })
       },
 
-      addBtnFaculty : async (key, entry)=> {
+      addBtnFaculty : async (criterion, step, entry)=> {
 
         let facultyProfile = await (await axios.get(`faculty_profile`)).data
         console.log(facultyProfile)
-        axios.post(`${key}/`, {...entry, faculty_profile : facultyProfile.id}).then(async (res)=> {
+        axios.post(`fp${criterion}${step}/`, {...entry, faculty_profile : facultyProfile.id}).then(async (res)=> {
           entry.id = res.data.id
           let temp = []
 
-          if(this.state.data[`${key}`]) {
-            temp = this.state.data[`${key}`]
+          if(this.state.data[`fp${criterion}${step}`]) {
+            temp = this.state.data[`fp${criterion}${step}`]
           }
 
           temp.push(entry)
@@ -213,7 +214,7 @@ componentDidMount() {
           this.setState({
             data : {
               ...this.state.data,
-              [`${key}`] : temp
+              [`fp${criterion}${step}`] : temp
             }
           })
           this.props.enqueueSnackbar("Data Saved", { 
@@ -322,6 +323,61 @@ componentDidMount() {
         console.log(arr)
       },
 
+      fetchAllFacultyStepData : async()=> {
+        let ct = {}
+        let extras = ["id", "dept"]
+        Object.keys(FACULTY_PROFILE_CONFIG).map((key_)=>{
+          ct[key_] = []
+          {Object.keys(FACULTY_PROFILE_CONFIG[key_]).map( (key,i) => {
+            ct[key_].push(`fp${key_}${key}_set`)
+          })
+        }
+        extras.map((option)=> ct[key_].push(option))
+        })
+
+        console.log(ct)
+        this.setState({
+          allStepsLoading : true
+        })
+        let arr = ['faculty_profile_detail']
+        await arr.map( async (step)=> {
+
+          let res = await (await axios.get(`${step}`))
+          if(res.data) {
+            res.data.map((individual_item)=> {
+              Object.keys(individual_item).map((step)=> {
+                if(step.includes("_set")) {
+                  let newKey = step.replace("_set", "")
+                  let data = this.state.data[newKey] ? this.state.data[newKey].concat(individual_item[step]) : individual_item[step]
+                  this.setState({
+                    data : {
+                      ...this.state.data,
+                      [newKey] : data,
+                      [`${newKey}loading`] : false
+                    }
+                  })
+                }
+                else {
+                  this.setState({
+                    data : {
+                      ...this.state.data,
+                      [step] :individual_item[step],
+                      [`${step}loading`] : false
+                    }
+                  })
+                }
+              })
+            })
+
+          } 
+        })
+
+        this.setState({
+          allStepsLoading : false
+        })
+        console.log(arr)
+      },
+
       fetchStepData : async(critertion, step)=> {
         let res = await (await axios.get(`c${critertion}${step}`)).data
         console.log(res)
@@ -335,7 +391,7 @@ componentDidMount() {
       },
 
       fetchAllSchools: async()=> {
-        let res = await (await axios.get(`school`)).data
+        let res = await (await axios.get(`school/`)).data
         this.setState({
           schools: res
         })

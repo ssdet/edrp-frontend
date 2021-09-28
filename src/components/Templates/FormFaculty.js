@@ -40,7 +40,7 @@ const useStyles = makeStyles((theme) => ({
 
 const EXCLUDE_FIELDS = {
   "id" : true,
-  "criterion" : true
+  "faculty_profile" : true
 }
 
 const FIELDS_WITH_NAME = {
@@ -61,7 +61,7 @@ const TextField = (props)=> {
             required
             fullWidth
             id={field.name}
-            label={field.label}
+            label={field.label.replaceAll("_", " ")}
             autoFocus
             {...field.extras}
             type={props.type}
@@ -85,7 +85,7 @@ const DateField = (props)=> {
             defaultValue="2021-05-11"
             fullWidth
             id={field.name}
-            label={field.label}
+            label={field.label.replaceAll("_", " ")}
             {...field.extras}
           />
         </Grid>
@@ -112,11 +112,11 @@ const SelectField = (props)=> {
         <>
             <Grid item xs={12}>
               <FormControl variant="outlined" fullWidth>
-                <InputLabel id={`select-outlined-label`}>{field.label}</InputLabel>
+                <InputLabel id={`select-outlined-label`} style={{textTransform: "capitalize"}}>{field.label.replaceAll("_", " ")}</InputLabel>
                 <Select
                   labelId={`select-outlined-label`}
                   id={field.name}
-                  label={field.label}
+                  label={field.label.replaceAll("_", " ")}
                   name={field.name}
                   fullWidth
                 >
@@ -151,8 +151,8 @@ const CheckBoxField = (props)=> {
           <Grid container className={classes.gridRoot} style={{paddingLeft : "10px"}}> 
              <Grid item xs={12} sm={6}>
              <FormControl component="fieldset">
-                  <FormLabel component="legend">{field.label}</FormLabel>
-                  <RadioGroup aria-label={field.label} name={field.name}  row value={value} onChange={handleChange}>
+                  <FormLabel component="legend" style={{textTransform: "capitalize"}}>{field.label.replaceAll("_", " ")}</FormLabel>
+                  <RadioGroup aria-label={field.label.replaceAll("_", " ")} name={field.name}  row value={value} onChange={handleChange}>
                       {field.options && field.options.map((option)=> (<FormControlLabel value={field.yesNoField ? option.value.toString() : option.value.toUpperCase()} control={<Radio />} label={option.label} />))}
                   </RadioGroup>
                 </FormControl>
@@ -207,7 +207,7 @@ function Form(props) {
 function Step(props) {
     const classes = useStyles();
     const {criterion, step} = props
-    const {state, addBtn, removeBtn} =  React.useContext(MyContext);
+    const {state, addBtnFaculty, removeBtnFaculty} =  React.useContext(MyContext);
 
     React.useEffect(()=> console.log(props.fields),[])
     const handleSubmit = (e)=> {
@@ -218,7 +218,7 @@ function Step(props) {
           data[key] = formData.get([key])
        }
        console.log(data)
-        addBtn(
+       addBtnFaculty(
             criterion,
             step,
             data
@@ -235,7 +235,7 @@ function Step(props) {
                   <Grid item xs={12} sm={6}>
                      <Button
                        // type="submit"
-                       onClick={()=> removeBtn(criterion,step)}
+                       onClick={()=> removeBtnFaculty(criterion,step)}
                         fullWidth
                         variant="contained"
                         color="primary"
@@ -261,12 +261,12 @@ function Step(props) {
                     <TableHead>
                       <TableRow>
                           {props.fields.map((field)=> (
-                            <TableCell>{field.label}</TableCell>
+                            <TableCell>{field.label.replaceAll("_", " ")}</TableCell>
                           ))}
                       </TableRow>
                     </TableHead>
                     <TableBody>
-                      {state.data[`c${criterion}${step}`] && state.data[`c${criterion}${step}`].map((row) =>(
+                      {state.data[`fp${criterion}${step}`] && state.data[`fp${criterion}${step}`].map((row) =>(
                        <TableRow key={JSON.stringify(row)}>
                       {props.fields.map((field)=> (!EXCLUDE_FIELDS[field.name] && !EXCLUDE_FIELDS[field.name] &&
                         <TableCell component="th" scope="row">
