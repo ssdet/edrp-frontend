@@ -1,8 +1,7 @@
 import React from 'react';
 import Cardlist from './PeopleList/Cardlist';
-// import Scroll from './PeopleList/Scroll';
+import Scroll from './PeopleList/Scroll';
 import Errorboundary from './PeopleList/Errorboundary';
-// import '../Profile/Profile.css';
 
 class Profile extends React.Component{
 
@@ -11,8 +10,7 @@ class Profile extends React.Component{
         this.state={
             Robots: [
                 {
-                  "id": 1,
-                  "name": "Leanne Graham",
+                  "name": "Varun Barthwal",
                   "username": "Bret",
                   "email": "Sincere@april.biz",
                   "address": {
@@ -260,9 +258,11 @@ class Profile extends React.Component{
 render()
     {
         return(  
-                <div className="tc pa4">
-                    <span >Star Troopers</span>
-                    <Errorboundary><Cardlist Robots={this.state.Robots} /></Errorboundary> 
+                <div>
+                    <p style={{height:'50px', fontSize:'29px', textAlign:'center', fontWeight:'bold', backgroundColor:'black', color:'White'}}>Teacher Profile Cards</p>
+                    <Scroll>
+                      <Errorboundary><Cardlist Robots={this.state.Robots} /></Errorboundary> 
+                    </Scroll>
                 </div>
             );
         }

@@ -2,7 +2,7 @@ import React from 'react';
 
 const TeacherCard = (props) => {
  return(
-    <div className="bg-white">
+    <div style={{marginBottom:'30px',marginLeft:'30px', borderRadius:'20px', border:'2px solid black', marginTop:'30px', width:'400px', padding:'30px'}}>
          <img alt="robots" src={`https://robohash.org/${props.id}?set=set2?200x200`} />
         <div>
            <h1>{props.name}</h1>

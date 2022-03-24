@@ -28,7 +28,7 @@ import { MyContext } from './store/Store';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import FacultyProfileHOC from './components/Templates/FacultyProfileHOC';
 import Profile from './components/Profile/Profile';
-
+import TeacherForm from './components/TeacherForm/TeacherForm';
 
 
 function App() {
@@ -47,6 +47,9 @@ function App() {
        <Switch>
        <Route path="/profile_page">
           <Profile/>
+          </Route>
+          <Route path="/TeacherForm">
+            <TeacherForm/>
           </Route>
           <Route path="/login">
             <Login type=" "/>
