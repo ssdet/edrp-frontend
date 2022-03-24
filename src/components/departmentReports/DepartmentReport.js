@@ -49,7 +49,7 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-export default function DepartmentReport() {
+export default function DepartmentReport(props) {
     const classes = useStyles();
     const {state, nextStep, addBtnFaculty, removeBtnFaculty} =  React.useContext(MyContext);
 
@@ -104,6 +104,7 @@ export default function DepartmentReport() {
                 </Grid>
                 <Grid item xs={12}>
                   <TextField
+                    onChange={props.validator}
                     autoComplete="volume"
                     name="volume"
                     variant="outlined"

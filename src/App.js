@@ -29,6 +29,7 @@ import ResetPassword from './components/ResetPassword/ResetPassword';
 import FacultyProfileHOC from './components/Templates/FacultyProfileHOC';
 import Profile from './components/Profile/Profile';
 import TeacherForm from './components/TeacherForm/TeacherForm';
+import DeanReport from './components/utils/DeanReport';
 
 
 function App() {
@@ -47,6 +48,9 @@ function App() {
        <Switch>
        <Route path="/profile_page">
           <Profile/>
+          </Route>
+          <Route path="/testing">
+          <DeanReport/>
           </Route>
           <Route path="/TeacherForm">
             <TeacherForm/>
