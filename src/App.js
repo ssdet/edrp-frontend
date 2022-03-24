@@ -27,6 +27,7 @@ import AllSchools from './components/Views/AllSchools';
 import { MyContext } from './store/Store';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import FacultyProfileHOC from './components/Templates/FacultyProfileHOC';
+import Profile from './components/Profile/Profile';
 
 
 
@@ -34,7 +35,7 @@ function App() {
   const {state, aboutUser} = React.useContext(MyContext)
 
   React.useEffect(()=> {
-    aboutUser()
+   // aboutUser()
   },[])
   return (<>
     <div className="App">
@@ -44,6 +45,9 @@ function App() {
        <Nav/>
       
        <Switch>
+       <Route path="/profile_page">
+          <Profile/>
+          </Route>
           <Route path="/login">
             <Login type=" "/>
           </Route>
