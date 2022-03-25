@@ -259,7 +259,7 @@ render()
     {
         return(  
                 <div>
-                    <p style={{height:'50px', fontSize:'29px', textAlign:'center', fontWeight:'bold', backgroundColor:'black', color:'White'}}>Teacher Profile Cards</p>
+                    <p style={{height:'50px', fontSize:'29px', textAlign:'center', fontWeight:'bold'}}>Teacher Profile Cards</p>
                     <Scroll>
                       <Errorboundary><Cardlist Robots={this.state.Robots} /></Errorboundary> 
                     </Scroll>
