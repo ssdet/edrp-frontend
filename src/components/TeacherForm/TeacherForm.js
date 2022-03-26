@@ -9,11 +9,27 @@ class TeacherFormComponent extends Component {
                 <h1 style={{textAlign:'center'}}>Faculty Profile form</h1>
 
                 <div style={{marginTop:'50px'}}>
-                    <div style={{display:'flex', marginBottom:'30px', marginLeft:'20px'}}>
-                        <h3>Name: </h3>
-                        <span  style={{marginLeft:'20px', marginTop:'5px'}}>
-                            <TextField id="name" label="Name" variant="outlined" style={{width: '250px'}}  name="name" required/>
-                        </span>                   
+
+
+                    <div style={{display:'flex', marginBottom:'30px'}}>                    
+                        <div style={{display:'flex', marginBottom:'30px', marginLeft:'20px'}}>
+                            <h3>Name: </h3>
+                            <span  style={{marginLeft:'20px', marginTop:'5px'}}>
+                                <TextField id="name" label="Name" variant="outlined" style={{width: '250px'}}  name="name" required/>
+                            </span>                   
+                        </div>
+                        <div style={{display:'flex', marginBottom:'30px', marginLeft:'20px'}}>
+                            <h3>Orchid ID: </h3>
+                            <span  style={{marginLeft:'20px', marginTop:'5px'}}>
+                                <TextField id="orchidid" label="Orchid ID" variant="outlined" style={{width: '250px'}} name="orchidid" required/>
+                            </span>                   
+                        </div>
+                        <div style={{display:'flex', marginBottom:'30px', marginLeft:'20px'}}>
+                            <h3>Duty: </h3>
+                            <span  style={{marginLeft:'20px', marginTop:'5px'}}>
+                                <TextField id="duty" label="Duty" variant="outlined" style={{width: '250px'}} name="duty" required/>
+                            </span>                   
+                        </div>
                     </div>
 
                     <div style={{display:'flex', marginBottom:'30px'}}>                    
@@ -29,6 +45,7 @@ class TeacherFormComponent extends Component {
                                 <TextField id="emailid" label="Email ID" variant="outlined" style={{width: '250px'}} name="emailid" required/>
                             </span>                   
                         </div>
+                        
                     </div>
 
                     <div style={{display:'flex', marginBottom:'30px'}}>
@@ -74,19 +91,36 @@ class TeacherFormComponent extends Component {
                     </div>
 
 
-                    <div style={{display:'flex', marginBottom:'90px', marginLeft:'20px'}}>
-                        <h3>Area of Interest: </h3>
-                        <span  style={{marginLeft:'30px', marginTop:'5px'}}>
-                            <TextField
-                                id="areaofinterest"
-                                label="Area of Interest"
-                                multiline
-                                rows={4}
-                                style={{width: '600px'}} 
-                                name="areaofinterest"
-                            />
-                        </span>                   
+                    <div style={{display:'flex', marginBottom:'30px'}}>
+
+                        <div style={{display:'flex', marginBottom:'90px', marginLeft:'20px'}}>
+                            <h3>Area of Interest: </h3>
+                            <span  style={{marginLeft:'30px', marginTop:'5px'}}>
+                                <TextField
+                                    id="areaofinterest"
+                                    label="Area of Interest"
+                                    multiline
+                                    rows={4}
+                                    style={{width: '600px'}} 
+                                    name="areaofinterest"
+                                />
+                            </span>                   
+                        </div>
+                        <div style={{display:'flex', marginBottom:'90px', marginLeft:'20px'}}>
+                            <h3>Address: </h3>
+                            <span  style={{marginLeft:'30px', marginTop:'5px'}}>
+                                <TextField
+                                    id="address"
+                                    label="Address"
+                                    multiline
+                                    rows={4}
+                                    style={{width: '600px'}} 
+                                    name="address"
+                                />
+                            </span>                   
+                        </div>
                     </div>
+
 
                     <div style={{display:'flex', marginBottom:'90px', marginLeft:'20px'}}>
                         <h3>Upload Profile Photograph here: </h3>
