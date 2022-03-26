@@ -4,7 +4,7 @@ import TeacherCard from './Card';
 const Cardlist= ( {Robots} )=> {
 
     return (
-        <div style={{display:'flex', flexWrap:'wrap', backgroundColor:'#C0EDA6' ,}}>
+        <div style={{display:'flex', flexWrap:'wrap'}}>
           {Robots.map((user, i) => {
             return <TeacherCard 
             key={i}

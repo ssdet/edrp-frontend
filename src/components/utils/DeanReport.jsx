@@ -2,7 +2,7 @@ import React from 'react'
 import DReport from './DReport'
 
 export default function DeanReport() {
-    const [textFieldFromDepartmentComponent, setTextFieldFromDepartmentComponent] = React.useState('')
+    const [data, setData] = React.useState('')
 
     const validator = (e) => {
         console.log( e.target.value)
@@ -11,18 +11,18 @@ export default function DeanReport() {
 
     const handleSubmit = (e) => {
         e.preventDefault()
-        if(textFieldFromDepartmentComponent === 'mehul') {
-            alert("Correct")
-        }
-        else {
-            alert("Invalid")
-        }
+        let data = {}
+        var formData = new FormData(e.target)
+        for (var key of formData.keys()) {
+            data[key] = formData.get([key])
+         }
+         console.log(data)
     }
   return (
-    <div>
+    <form onSubmit={handleSubmit}>
         Dean Report
         <DReport validator={validator}/>
         <button type="button" onClick={handleSubmit}>Click Me</button>
-    </div>
+    </form>
   )
 }
