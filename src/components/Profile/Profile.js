@@ -3,7 +3,7 @@ import Cardlist from './PeopleList/Cardlist';
 import Scroll from './PeopleList/Scroll';
 import Errorboundary from './PeopleList/Errorboundary';
 
-class Profile extends React.Component{
+class ProfileComponent extends React.Component{
 
     constructor(){
         super()
@@ -259,7 +259,7 @@ render()
     {
         return(  
                 <div>
-                    <p style={{height:'50px', fontSize:'29px', textAlign:'center', fontWeight:'bold'}}>Teacher Profile Cards</p>
+                    <p style={{height:'50px', fontSize:'29px', textAlign:'center', fontWeight:'bold'}}>Faculty Profile Cards</p>
                     <Scroll>
                       <Errorboundary><Cardlist Robots={this.state.Robots} /></Errorboundary> 
                     </Scroll>
@@ -270,4 +270,4 @@ render()
 
 
 
-export default Profile;
+export const Profile= ProfileComponent;

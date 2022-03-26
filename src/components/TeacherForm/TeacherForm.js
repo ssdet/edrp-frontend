@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import TextField from '@material-ui/core/TextField';
 import Button from '@material-ui/core/Button'
-class TeacherForm extends Component {
+
+class TeacherFormComponent extends Component {
     render(){
         return(
             <div>
@@ -106,4 +107,4 @@ class TeacherForm extends Component {
         );
     }
 }
-export default TeacherForm;
+export const TeacherForm= TeacherFormComponent;

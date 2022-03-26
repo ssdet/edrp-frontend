@@ -27,10 +27,9 @@ import AllSchools from './components/Views/AllSchools';
 import { MyContext } from './store/Store';
 import ResetPassword from './components/ResetPassword/ResetPassword';
 import FacultyProfileHOC from './components/Templates/FacultyProfileHOC';
-import Profile from './components/Profile/Profile';
-import TeacherForm from './components/TeacherForm/TeacherForm';
-import DeanReport from './components/utils/DeanReport';
-
+import {Profile} from './components/Profile/Profile';
+import {TeacherForm} from './components/TeacherForm/TeacherForm';
+import {ProfileDetails} from './components/ProfileDetails/ProfileDetails';
 
 function App() {
   const {state, aboutUser} = React.useContext(MyContext)
@@ -46,14 +45,14 @@ function App() {
        <Nav/>
       
        <Switch>
-       <Route path="/profile_page">
-          <Profile/>
-          </Route>
-          <Route path="/testing">
-          <DeanReport/>
+          <Route path="/profile_page">
+            <Profile/>
           </Route>
           <Route path="/TeacherForm">
             <TeacherForm/>
+          </Route>
+          <Route path="/ProfileDetails">
+            <ProfileDetails/>
           </Route>
           <Route path="/login">
             <Login type=" "/>
