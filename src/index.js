@@ -41,7 +41,7 @@ axios.interceptors.response.use(response => {
     if(error.message === 'Request failed with status code 401') {
       localStorage.clear()
     }
-    console.log(JSON.stringify(error));
+    //console.log(JSON.stringify(error));
     return Promise.reject(error);
 });
 

@@ -37,8 +37,9 @@ class MyProvider extends React.Component {
       "Whether Structured feedback recieved from all the stakeholders"
     ],
     data : {},
-    user : localStorage.getItem('iqac_user') ? JSON.parse(localStorage.getItem('iqac_user')) : {}
-
+    user : localStorage.getItem('iqac_user') ? JSON.parse(localStorage.getItem('iqac_user')) : {},
+    facultyResume : {},
+    facultyList : []
   }
 }
 
@@ -50,6 +51,15 @@ componentDidMount() {
     return (
       <MyContext.Provider value = {{ 
         state: this.state,
+
+        fetchLatestFacultyProfile : () => {
+           axios.get(`/actual_faculty_profile/`).then((res) => {
+            console.log(res)
+            this.setState({
+              facultyResume : res.data
+            })
+          })
+        },
 
       loginUser : (data) => {
         // this.setState({
@@ -138,6 +148,31 @@ componentDidMount() {
           })
       },
 
+      fetchFaculties : async() => {
+        axios.get('/actual_faculty_profile_update/').then((res)=> {
+          this.setState({
+            facultyList : res.data
+          })
+        })
+      },
+      
+      submitFacultyForm : async(formData, id, closeFunc)=> {
+        axios.patch(`/actual_faculty_profile_update/${id}/`, new FormData(formData)).then((res)=> {
+          this.setState({
+            facultyResume : res.data
+          })
+          closeFunc()
+          this.props.enqueueSnackbar("Data Saved", { 
+            variant: 'default',
+        })
+        })
+        .catch((err)=> {
+          this.props.enqueueSnackbar(err.message, { 
+            variant: 'warning',
+        })
+        })
+      },
+
       
 
       nextStep : ()=> {
@@ -222,7 +257,7 @@ componentDidMount() {
         })
           })
         .catch((err) => {
-                      this.props.enqueueSnackbar(err.message, { 
+          this.props.enqueueSnackbar(err.message, { 
             variant: 'warning',
         })
         })

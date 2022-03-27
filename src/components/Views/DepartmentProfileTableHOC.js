@@ -24,6 +24,8 @@ import {
     useParams
   } from "react-router-dom" 
 import DepartmentProfileTable from './DepartmentProfileTable'
+import { Profile } from '../Profile/Profile'
+import { ProfileDetails } from '../ProfileDetails/ProfileDetails'
 
 const useStyles = makeStyles((theme) => ({
   formControl: {
@@ -94,7 +96,8 @@ export default function DepartmentProfileTableHOC(props) {
     React.useEffect(()=> {
 
       if(store.state.user.type === 'FACULTY') {
-        axios.get('actual_faculty_profile').then((res)=> setFaculty_profile(res.data))
+        store.fetchLatestFacultyProfile()
+       // axios.get('actual_faculty_profile').then((res)=> setFaculty_profile(res.data))
       }
         if(match.params.deptId) {
             setDepartment(parseInt(match.params.deptId))
@@ -129,8 +132,8 @@ export default function DepartmentProfileTableHOC(props) {
                 </Select>
               </FormControl>}
 
-              {store.state.user.type === 'FACULTY' && <div>
-                
+              {store.state.user.type === 'FACULTY' && <div style={{marginBottom : '10px'}}>
+                <ProfileDetails data={store.state.facultyResume} user={store.state.user}/>
                 </div>}
 
             {Object.keys(facultyConfig).map((key_)=>(<>

@@ -19,7 +19,8 @@ export const styles = (theme) => createStyles({
         padding: '8px',
     },
     img:{
-        width:'200px'
+        width:'200px',
+        justifyContent: 'center',
     }
 })
 

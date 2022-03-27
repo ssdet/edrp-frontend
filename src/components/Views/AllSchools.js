@@ -35,6 +35,7 @@ import FormControl from '@material-ui/core/FormControl';
 import Select from '@material-ui/core/Select';
 import DepartmentProfileTableHOC from './DepartmentProfileTableHOC';
 import { ArrowForward } from '@material-ui/icons';
+import { Profile } from '../Profile/Profile';
 
 
 
@@ -270,8 +271,9 @@ export const DepartmentDetail = (props)=> {
         <Switch>
            <Route path={match.path}>
                 <Tabs value={value} centered onChange={handleChange} aria-label="simple tabs example">
-                  <Tab label="Faculty Data" {...a11yProps(0)} />
+                  <Tab label="Department Data" {...a11yProps(0)} />
                   <Tab label="IQAC Data" {...a11yProps(1)} />
+                  <Tab label="Faculty Profiles" {...a11yProps(2)} />
                 </Tabs>
               <TabPanel value={value} index={0}>
                 <DepartmentProfileTableHOC/>
@@ -279,6 +281,9 @@ export const DepartmentDetail = (props)=> {
               <TabPanel value={value} index={1}>
                 <CriterionTableHOC/>
               </TabPanel>
+              <TabPanel value={value} index={2}>
+               <Profile/>
+            </TabPanel>
            </Route>
          </Switch>
    </div>

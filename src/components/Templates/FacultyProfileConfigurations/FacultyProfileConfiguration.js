@@ -105,8 +105,8 @@ export const FACULTY_PROFILE_CONFIG = {
             "type": "text",
             },
             {
-            "name": "issn_no",
-            "label": "issn_no",
+            "name": "isbn_no",
+            "label": "isbn_no",
             "type": "text",
             },
         ]
@@ -228,6 +228,11 @@ export const FACULTY_PROFILE_CONFIG = {
                   {id : 'COMPLETED', name : 'COMPLETED'}
               ]
             }
+          },
+          {
+            "name" : "title_of_project",
+            "label" : "title_of_project",
+            "type" : "text"
           },
           {
             "name": "principle_investigator",
@@ -406,7 +411,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "10" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : "{from 01.04.2020 to 31.03.2021}",
         "fields": [
@@ -444,7 +449,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "11" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : "{2020-21}",
         "fields": [
@@ -475,7 +480,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "12" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : "",
         "fields": [
@@ -507,7 +512,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "13" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : ``,
         "fields": [
@@ -535,7 +540,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "14" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : `{Member of any Task force; academic body, Scientific Advisory Committee; Special Invitee Expert, Women Association; Project Screening Committee,  Editor/Reviewer any journal/ scientific journal, Guest Reviewer
         Society member; Executive Member; Steering Committee; Advisor, Expert Member- Selection Committee, etc.}`,
@@ -568,7 +573,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "15" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : `{including awards and recognitions/ visiting fellowship, etc.}`,
         "fields": [
@@ -605,7 +610,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "16" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : `{such as Science day, Hindi diwas, tourism day, Yoga day, sports day, engineer day, world environment day, musical/cultural events, tech fest, exhibitions in international/national/regional etc.}`,
         "fields": [
@@ -638,7 +643,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "17" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : ``,
         "fields": [
@@ -666,7 +671,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "18" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : ``,
         "fields": [
@@ -709,7 +714,7 @@ export const FACULTY_PROFILE_CONFIG = {
       },
     },
     "19" : {
-      "1" : {
+      "0" : {
         "step" : 1,
         "description" : ``,
         "fields": [
